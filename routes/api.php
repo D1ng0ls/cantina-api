@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\ApiUserController;
-use App\Http\Controllers\API\ApiMenuController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\API\ApiCategoriaController;
+use App\Http\Controllers\Api\ApiUserController;
+use App\Http\Controllers\Api\ApiMenuController;
+use App\Http\Controllers\Api\ApiCategoriaController;
 use App\Http\Controllers\Api\ApiPedidoController;
 
 Route::prefix('cantina')->group(function () {
