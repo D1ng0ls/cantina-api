@@ -20,6 +20,7 @@ Route::prefix('cantina')->group(function () {
         // Route::put('/user/{user}', [ApiUserController::class, 'update']);
         // Route::get('/user/{user}', [ApiUserController::class, 'destroy']);
         
+        
         Route::get('/menu', [ApiMenuController::class, 'show']);
         Route::get('/menu/{produto}', [ApiMenuController::class,'showById']);
         Route::get('/menu/categoria/{categoria}', [ApiMenuController::class,'showByCategoria']);
