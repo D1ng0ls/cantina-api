@@ -44,10 +44,6 @@ class ApiPedidoController extends Controller
      *   "id_pedido": 1
      * }
      * 
-     * @response 400 {
-     *   "error": "O valor total calculado não corresponde ao valor informado."
-     * }
-     * 
      * @response 404 {
      *   "error": "Produto não encontrado."
      * }

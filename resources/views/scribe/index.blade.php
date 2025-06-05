@@ -1492,15 +1492,6 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (400):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: &quot;O valor total calculado n&atilde;o corresponde ao valor informado.&quot;
-}</code>
- </pre>
-            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <pre>
@@ -2662,7 +2653,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "preco=4326.41688"\
     --form "quantidade=16"\
     --form "categoria_id=16"\
-    --form "imagem=@C:\Users\daffa\AppData\Local\Temp\php19BB.tmp" </code></pre></div>
+    --form "imagem=@C:\Users\daffa\AppData\Local\Temp\phpCB91.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2838,7 +2829,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\php19BB.tmp</code></p>
+<p>Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\phpCB91.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>preco</code></b>&nbsp;&nbsp;

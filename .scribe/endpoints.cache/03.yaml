@@ -114,15 +114,6 @@ endpoints:
         description: ''
         custom: []
       -
-        status: 400
-        content: |-
-          {
-            "error": "O valor total calculado não corresponde ao valor informado."
-          }
-        headers: []
-        description: ''
-        custom: []
-      -
         status: 404
         content: |-
           {
