@@ -65,16 +65,6 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      valor_total:
-        name: valor_total
-        description: 'Valor total calculado.'
-        required: true
-        example: 4326.41688
-        type: number
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
       produtos:
         name: produtos
         description: 'Lista de produtos.'
@@ -107,7 +97,6 @@ endpoints:
         nullable: false
         custom: []
     cleanBodyParameters:
-      valor_total: 4326.41688
       produtos:
         - architecto
     fileParameters: []

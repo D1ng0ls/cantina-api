@@ -312,7 +312,7 @@ endpoints:
       custom: []
     headers:
       Authorization: 'Bearer {token} O token de autenticação JWT'
-      Content-Type: application/json
+      Content-Type: multipart/form-data
       Accept: application/json
     urlParameters:
       produto_id:
@@ -363,10 +363,10 @@ endpoints:
         custom: []
       imagem:
         name: imagem
-        description: 'URL da imagem.'
+        description: 'Imagem do produto.'
         required: true
-        example: architecto
-        type: string
+        example: null
+        type: file
         enumValues: []
         exampleWasSpecified: false
         nullable: false
@@ -404,11 +404,11 @@ endpoints:
     cleanBodyParameters:
       nome: architecto
       descricao: architecto
-      imagem: architecto
       preco: 4326.41688
       quantidade: 16
       categoria_id: 16
-    fileParameters: []
+    fileParameters:
+      imagem: null
     responses:
       -
         status: 200

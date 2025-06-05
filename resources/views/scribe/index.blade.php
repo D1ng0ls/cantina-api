@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Laravel API Documentation</title>
+    <title>CantinaApi API Documentation</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
@@ -154,7 +154,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 15, 2025</li>
+        <li>Last updated: June 5, 2025</li>
     </ul>
 </div>
 
@@ -1448,7 +1448,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"valor_total\": 4326.41688,
     \"produtos\": [
         \"architecto\"
     ]
@@ -1468,7 +1467,6 @@ const headers = {
 };
 
 let body = {
-    "valor_total": 4326.41688,
     "produtos": [
         "architecto"
     ]
@@ -1594,17 +1592,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                                 <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>valor_total</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="valor_total"                data-endpoint="POSTapi-cantina-pedido"
-               value="4326.41688"
-               data-component="body">
-    <br>
-<p>Valor total calculado. Example: <code>4326.41688</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
         <details>
             <summary style="padding-bottom: 10px;">
                 <b style="line-height: 2;"><code>produtos</code></b>&nbsp;&nbsp;
@@ -2668,17 +2655,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-bash">curl --request PATCH \
     "http://localhost/api/cantina/menu/1" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
-    --header "Content-Type: application/json" \
+    --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --data "{
-    \"nome\": \"architecto\",
-    \"descricao\": \"architecto\",
-    \"imagem\": \"architecto\",
-    \"preco\": 4326.41688,
-    \"quantidade\": 16,
-    \"categoria_id\": 16
-}"
-</code></pre></div>
+    --form "nome=architecto"\
+    --form "descricao=architecto"\
+    --form "preco=4326.41688"\
+    --form "quantidade=16"\
+    --form "categoria_id=16"\
+    --form "imagem=@C:\Users\daffa\AppData\Local\Temp\php19BB.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2688,23 +2672,22 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 const headers = {
     "Authorization": "Bearer {token} O token de autenticação JWT",
-    "Content-Type": "application/json",
+    "Content-Type": "multipart/form-data",
     "Accept": "application/json",
 };
 
-let body = {
-    "nome": "architecto",
-    "descricao": "architecto",
-    "imagem": "architecto",
-    "preco": 4326.41688,
-    "quantidade": 16,
-    "categoria_id": 16
-};
+const body = new FormData();
+body.append('nome', 'architecto');
+body.append('descricao', 'architecto');
+body.append('preco', '4326.41688');
+body.append('quantidade', '16');
+body.append('categoria_id', '16');
+body.append('imagem', document.querySelector('input[name="imagem"]').files[0]);
 
 fetch(url, {
     method: "PATCH",
     headers,
-    body: JSON.stringify(body),
+    body,
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -2738,7 +2721,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <form id="form-PATCHapi-cantina-menu--produto_id-" data-method="PATCH"
       data-path="api/cantina/menu/{produto_id}"
       data-authed="1"
-      data-hasfiles="0"
+      data-hasfiles="1"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-cantina-menu--produto_id-', this);">
@@ -2784,10 +2767,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Content-Type"                data-endpoint="PATCHapi-cantina-menu--produto_id-"
-               value="application/json"
+               value="multipart/form-data"
                data-component="header">
     <br>
-<p>Example: <code>application/json</code></p>
+<p>Example: <code>multipart/form-data</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
@@ -2848,14 +2831,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>imagem</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>file</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
+                <input type="file" style="display: none"
                               name="imagem"                data-endpoint="PATCHapi-cantina-menu--produto_id-"
-               value="architecto"
+               value=""
                data-component="body">
     <br>
-<p>URL da imagem. Example: <code>architecto</code></p>
+<p>Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\php19BB.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>preco</code></b>&nbsp;&nbsp;
