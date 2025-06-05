@@ -35,7 +35,6 @@ class ApiPedidoController extends Controller
      * @group Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
-     * @bodyParam valor_total float required Valor total calculado.
      * @bodyParam produtos array required Lista de produtos.
      * @bodyParam produtos[].id int required ID do produto.
      * @bodyParam produtos[].quantidade int required Quantidade do produto.
@@ -57,7 +56,6 @@ class ApiPedidoController extends Controller
     {
         // Validação de dados
         $request->validate([
-            'valor_total' => 'required|numeric',
             'produtos' => 'required|array',
             'produtos.*.id' => 'required|exists:produtos,id',
             'produtos.*.quantidade' => 'required|numeric',
@@ -77,13 +75,6 @@ class ApiPedidoController extends Controller
 
             // Calculando o valor total
             $calculo_valor_total += $produto_data->preco * $produto['quantidade'];
-        }
-
-        // Verificando se o valor total informado confere com o calculado
-        if ($calculo_valor_total != $request->valor_total) {
-            return response()->json([
-                'error' => 'O valor total calculado não corresponde ao valor informado.',
-            ], 400);
         }
 
         // Criando o pedido

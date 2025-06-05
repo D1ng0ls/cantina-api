@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\Categoria;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ApiMenuController extends Controller
 {
@@ -110,17 +112,25 @@ class ApiMenuController extends Controller
         $request->validate([
             'nome' => 'required|string',
             'descricao' => 'required|string',
-            'imagem' => 'required|string',
+            'imagem' => 'required|image|mimes:jpg,jpeg,png|max:5120',
             'preco' => 'required|numeric',
             'quantidade' => 'required|integer',
             //'ativo' =>'required|boolean',
             'categoria_id' => 'required|exists:categorias,id',
         ]);
 
+        $extension = $request->file('imagem')->getClientOriginalExtension();
+
+        // GERAR UUID
+        $filename = Str::uuid()->toString() . '.' . $extension;
+
+        // SALVAR no public/upload/produtos
+        $path = $request->file('imagem')->move(public_path('upload/produtos'), $filename);
+
         Produto::create([
             'nome' => $request->nome,
             'descricao' => $request->descricao,
-            'imagem' => $request->imagem,
+            'imagem' => 'upload/produtos/' . $filename,
             'preco' => $request->preco,
             'quantidade' => $request->quantidade,
             //'ativo' => $request->ativo,
@@ -143,7 +153,7 @@ class ApiMenuController extends Controller
      * 
      * @bodyParam nome string required Nome do produto.
      * @bodyParam descricao string required Descrição do produto.
-     * @bodyParam imagem string required URL da imagem.
+     * @bodyParam imagem file required Imagem do produto.
      * @bodyParam preco float required Preço do produto.
      * @bodyParam quantidade int required Quantidade disponível.
      * @bodyParam categoria_id int required ID da categoria.
@@ -159,14 +169,26 @@ class ApiMenuController extends Controller
         $request->validate([
             'nome' => 'required|string',
             'descricao' => 'required|string',
-            'imagem' => 'required|string',
+            'imagem' => 'required|image|mimes:jpg,jpeg,png|max:5120',
             'preco' => 'required|numeric',
             'quantidade' => 'required|integer',
             //'ativo' =>'required|boolean',
             'categoria_id' => 'required|exists:categorias,id',
         ]);
 
-        $produto->update($request->only(['nome', 'descricao', 'imagem', 'preco', 'quantidade', 'categoria_id']));
+        $extension = $request->file('imagem')->getClientOriginalExtension();
+
+        // GERAR UUID
+        $filename = Str::uuid()->toString() . '.' . $extension;
+
+        // SALVAR no public/upload/produtos
+        $path = $request->file('imagem')->move(public_path('upload/produtos'), $filename);
+
+        // MONTA os dados
+        $data = $request->only(['nome', 'descricao', 'preco', 'quantidade', 'categoria_id']);
+        $data['imagem'] = 'upload/produtos/' . $filename;
+
+        $produto->update($data);
 
         return response()->json([
             'message' => 'Produto atualizado com sucesso',

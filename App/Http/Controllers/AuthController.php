@@ -45,15 +45,10 @@ class AuthController extends Controller
         ]);
 
         if ($request->input('role')) {
-            $request->validate([
-                'role' => ['required', 'string', 'in:user,patron'],
-            ]);
-
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'role' => $request->role,
             ]);
         } else {
             $user = User::create([
