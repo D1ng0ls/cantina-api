@@ -28,7 +28,8 @@ class ApiMenuController extends Controller
      *         "id": 3,
      *         "nome": "Categoria Y"
      *       }
-     *     }
+     *     },
+     *     ...
      *   ],
      *   ...
      * }
@@ -78,7 +79,8 @@ class ApiMenuController extends Controller
      *       "id": 1,
      *       "nome": "Produto X",
      *       ...
-     *     }
+     *     },
+     *     ...
      *   ]
      * }
      */

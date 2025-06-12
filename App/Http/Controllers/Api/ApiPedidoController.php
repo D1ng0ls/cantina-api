@@ -19,13 +19,39 @@ class ApiPedidoController extends Controller
      * 
      * @response 200 {
      *   "current_page": 1,
-     *   "data": [...],
+     *   "data": 
+     *   [
+     *     {
+     *       "id": 1,
+     *       "valor_total": 100,
+     *       "status": "aberto",
+     *       "usuario": {
+     *         "id": 1,
+     *         "name": "John Doe"
+     *       },
+     *       "pagamento": [
+     *         {
+     *           "id": 1,
+     *           "status": "aprovado"
+     *         }
+     *       ],
+     *       "produtos": [
+     *         {
+     *           "id": 1,
+     *           "nome": "Produto X",
+     *           "quantidade": 1,
+     *           "valor_unitario": 100
+     *         },
+     *         ...
+     *       ]
+     *     }
+     *   ],
      *   ...
      * }
      */
     public function show()
     {
-        return response()->json(Pedido::paginate(10));
+        return response()->json(Pedido::with(['produtos', 'usuario', 'pagamento'])->paginate(10));
     }
 
     /**

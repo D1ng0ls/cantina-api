@@ -154,7 +154,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 5, 2025</li>
+        <li>Last updated: June 12, 2025</li>
     </ul>
 </div>
 
@@ -977,7 +977,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/cantina/categorias/1" \
+    "http://localhost/api/cantina/categorias/16" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -989,7 +989,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/categorias/1"
+    "http://localhost/api/cantina/categorias/16"
 );
 
 const headers = {
@@ -1108,10 +1108,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="categoria_id"                data-endpoint="PATCHapi-cantina-categorias--categoria_id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the categoria. Example: <code>1</code></p>
+<p>The ID of the categoria. Example: <code>16</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>categoria</code></b>&nbsp;&nbsp;
@@ -1152,7 +1152,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/cantina/categorias/1" \
+    "http://localhost/api/cantina/categorias/16" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1160,7 +1160,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/categorias/1"
+    "http://localhost/api/cantina/categorias/16"
 );
 
 const headers = {
@@ -1274,10 +1274,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="categoria_id"                data-endpoint="DELETEapi-cantina-categorias--categoria_id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the categoria. Example: <code>1</code></p>
+<p>The ID of the categoria. Example: <code>16</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>categoria</code></b>&nbsp;&nbsp;
@@ -1342,7 +1342,33 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
   &quot;current_page&quot;: 1,
-  &quot;data&quot;: [...],
+  &quot;data&quot;:
+  [
+    {
+      &quot;id&quot;: 1,
+      &quot;valor_total&quot;: 100,
+      &quot;status&quot;: &quot;aberto&quot;,
+      &quot;usuario&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;John Doe&quot;
+      },
+      &quot;pagamento&quot;: [
+        {
+          &quot;id&quot;: 1,
+          &quot;status&quot;: &quot;aprovado&quot;
+        }
+      ],
+      &quot;produtos&quot;: [
+        {
+          &quot;id&quot;: 1,
+          &quot;nome&quot;: &quot;Produto X&quot;,
+          &quot;quantidade&quot;: 1,
+          &quot;valor_unitario&quot;: 100
+        },
+        ...
+      ]
+    }
+  ],
   ...
 }</code>
  </pre>
@@ -1631,7 +1657,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/cantina/pedido/10" \
+    "http://localhost/api/cantina/pedido/16" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1643,7 +1669,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/pedido/10"
+    "http://localhost/api/cantina/pedido/16"
 );
 
 const headers = {
@@ -1762,10 +1788,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="pedido_id"                data-endpoint="PATCHapi-cantina-pedido--pedido_id-"
-               value="10"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the pedido. Example: <code>10</code></p>
+<p>The ID of the pedido. Example: <code>16</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>pedido</code></b>&nbsp;&nbsp;
@@ -1806,7 +1832,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/cantina/pedido/10" \
+    "http://localhost/api/cantina/pedido/16" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1814,7 +1840,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/pedido/10"
+    "http://localhost/api/cantina/pedido/16"
 );
 
 const headers = {
@@ -1928,10 +1954,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="pedido_id"                data-endpoint="DELETEapi-cantina-pedido--pedido_id-"
-               value="10"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the pedido. Example: <code>10</code></p>
+<p>The ID of the pedido. Example: <code>16</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>pedido</code></b>&nbsp;&nbsp;
@@ -2004,7 +2030,8 @@ fetch(url, {
         &quot;id&quot;: 3,
         &quot;nome&quot;: &quot;Categoria Y&quot;
       }
-    }
+    },
+    ...
   ],
   ...
 }</code>
@@ -2106,7 +2133,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/menu/1" \
+    --get "http://localhost/api/cantina/menu/16" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2114,7 +2141,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/menu/1"
+    "http://localhost/api/cantina/menu/16"
 );
 
 const headers = {
@@ -2233,10 +2260,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="produto_id"                data-endpoint="GETapi-cantina-menu--produto_id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the produto. Example: <code>1</code></p>
+<p>The ID of the produto. Example: <code>16</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>produto</code></b>&nbsp;&nbsp;
@@ -2265,7 +2292,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/menu/categoria/1" \
+    --get "http://localhost/api/cantina/menu/categoria/16" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2273,7 +2300,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/menu/categoria/1"
+    "http://localhost/api/cantina/menu/categoria/16"
 );
 
 const headers = {
@@ -2303,7 +2330,8 @@ fetch(url, {
       &quot;id&quot;: 1,
       &quot;nome&quot;: &quot;Produto X&quot;,
       ...
-    }
+    },
+    ...
   ]
 }</code>
  </pre>
@@ -2395,10 +2423,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="categoria_id"                data-endpoint="GETapi-cantina-menu-categoria--categoria_id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the categoria. Example: <code>1</code></p>
+<p>The ID of the categoria. Example: <code>16</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>categoria</code></b>&nbsp;&nbsp;
@@ -2644,7 +2672,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/cantina/menu/1" \
+    "http://localhost/api/cantina/menu/16" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
@@ -2653,12 +2681,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "preco=4326.41688"\
     --form "quantidade=16"\
     --form "categoria_id=16"\
-    --form "imagem=@C:\Users\daffa\AppData\Local\Temp\phpCB91.tmp" </code></pre></div>
+    --form "imagem=@C:\Users\daffa\AppData\Local\Temp\php1DF6.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/menu/1"
+    "http://localhost/api/cantina/menu/16"
 );
 
 const headers = {
@@ -2781,10 +2809,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="produto_id"                data-endpoint="PATCHapi-cantina-menu--produto_id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the produto. Example: <code>1</code></p>
+<p>The ID of the produto. Example: <code>16</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>produto</code></b>&nbsp;&nbsp;
@@ -2829,7 +2857,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\phpCB91.tmp</code></p>
+<p>Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\php1DF6.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>preco</code></b>&nbsp;&nbsp;
@@ -2880,7 +2908,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/cantina/menu/1" \
+    "http://localhost/api/cantina/menu/16" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2888,7 +2916,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/menu/1"
+    "http://localhost/api/cantina/menu/16"
 );
 
 const headers = {
@@ -3002,10 +3030,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="produto_id"                data-endpoint="DELETEapi-cantina-menu--produto_id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the produto. Example: <code>1</code></p>
+<p>The ID of the produto. Example: <code>16</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>produto</code></b>&nbsp;&nbsp;

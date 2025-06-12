@@ -123,7 +123,7 @@ endpoints:
         name: categoria_id
         description: 'The ID of the categoria.'
         required: true
-        example: 1
+        example: 16
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -140,7 +140,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      categoria_id: 1
+      categoria_id: 16
       categoria: 16
     queryParameters: []
     cleanQueryParameters: []
@@ -196,7 +196,7 @@ endpoints:
         name: categoria_id
         description: 'The ID of the categoria.'
         required: true
-        example: 1
+        example: 16
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -213,7 +213,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      categoria_id: 1
+      categoria_id: 16
       categoria: 16
     queryParameters: []
     cleanQueryParameters: []

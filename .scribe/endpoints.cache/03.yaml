@@ -33,7 +33,33 @@ endpoints:
         content: |-
           {
             "current_page": 1,
-            "data": [...],
+            "data":
+            [
+              {
+                "id": 1,
+                "valor_total": 100,
+                "status": "aberto",
+                "usuario": {
+                  "id": 1,
+                  "name": "John Doe"
+                },
+                "pagamento": [
+                  {
+                    "id": 1,
+                    "status": "aprovado"
+                  }
+                ],
+                "produtos": [
+                  {
+                    "id": 1,
+                    "nome": "Produto X",
+                    "quantidade": 1,
+                    "valor_unitario": 100
+                  },
+                  ...
+                ]
+              }
+            ],
             ...
           }
         headers: []
@@ -150,7 +176,7 @@ endpoints:
         name: pedido_id
         description: 'The ID of the pedido.'
         required: true
-        example: 10
+        example: 16
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -167,7 +193,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      pedido_id: 10
+      pedido_id: 16
       pedido: 16
     queryParameters: []
     cleanQueryParameters: []
@@ -223,7 +249,7 @@ endpoints:
         name: pedido_id
         description: 'The ID of the pedido.'
         required: true
-        example: 10
+        example: 16
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -240,7 +266,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      pedido_id: 10
+      pedido_id: 16
       pedido: 16
     queryParameters: []
     cleanQueryParameters: []

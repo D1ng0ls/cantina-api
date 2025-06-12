@@ -24,8 +24,13 @@ class Pedido extends Model
         return $this->belongsToMany(Pedido::class, 'produto_pedidos')->withPivot('quantidade', 'valor_unitario');
     }
 
-    public function pagamentos()
+    public function pagamento()
     {
         return $this->belongsTo(Pagamento::class, 'pedido_id');
+    }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'usuario_id');
     }
 }
