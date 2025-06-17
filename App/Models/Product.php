@@ -11,7 +11,7 @@ class Product extends Model
     
     protected $dates = ['deleted_at'];
 
-    protected $table = 'produtos';
+    protected $table = 'products';
 
     protected $fillable = [
         'name',

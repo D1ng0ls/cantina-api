@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends ApiController
 {
@@ -46,7 +47,11 @@ class UserController extends ApiController
     {
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore(auth()->id()),
+            ],
         ]);
 
         auth()->user()->update([

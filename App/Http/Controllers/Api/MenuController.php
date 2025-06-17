@@ -34,7 +34,7 @@ class MenuController extends ApiController
      */
     public function index()
     {
-        return response()->json(Product::with('categoria')->paginate(50));
+        return response()->json(Product::with('category')->paginate(50));
     }
 
     /**

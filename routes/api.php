@@ -19,8 +19,8 @@ Route::prefix('cantina')->group(function () {
 
         Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
             Route::get('/', [UserController::class, 'show']);
-            Route::patch('/{user}', [UserController::class, 'update']);
-            Route::delete('/{user}', [UserController::class, 'destroy']);
+            Route::patch('/', [UserController::class, 'update']);
+            Route::delete('/', [UserController::class, 'destroy']);
         });
 
         Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
