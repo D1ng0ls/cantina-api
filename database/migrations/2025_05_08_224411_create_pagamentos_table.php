@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pagamentos', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->decimal('valor_total', 10, 2);
-            $table->enum('status', ['pendente', 'em_processamento', 'pago', 'recusado', 'cancelado', 'estornado'])->default('pendente');
-            $table->enum('forma_pagamento', ['pix', 'debito', 'credito'])->default('pix');
-            $table->foreignId('pedido_id')->constrained('users')->onDelete('cascade');;
+            $table->decimal('total_value', 10, 2);
+            $table->enum('status', ['pending', 'processing', 'paid', 'declined', 'canceled', 'refunded'])->default('pending');
+            $table->enum('method', ['pix', 'debit', 'credit', 'cash'])->default('pix');
+            $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');;
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pagamentos');
+        Schema::dropIfExists('payments');
     }
 };

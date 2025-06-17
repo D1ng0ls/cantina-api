@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Api\ApiUserController;
-use App\Http\Controllers\Api\ApiMenuController;
-use App\Http\Controllers\Api\ApiCategoriaController;
-use App\Http\Controllers\Api\ApiPedidoController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\MenuController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\OpeningHourController;
 
 Route::prefix('cantina')->group(function () {
     Route::middleware('guest')->group(function () {
@@ -16,26 +17,42 @@ Route::prefix('cantina')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
 
-        // Route::get('/user', [ApiUserController::class, 'user']);
-        // Route::put('/user/{user}', [ApiUserController::class, 'update']);
-        // Route::get('/user/{user}', [ApiUserController::class, 'destroy']);
-        
-        
-        Route::get('/menu', [ApiMenuController::class, 'show']);
-        Route::get('/menu/{produto}', [ApiMenuController::class,'showById']);
-        Route::get('/menu/categoria/{categoria}', [ApiMenuController::class,'showByCategoria']);
-        Route::post('/menu', [ApiMenuController::class,'store']);
-        Route::patch('/menu/{produto}', [ApiMenuController::class,'update']);
-        Route::delete('/menu/{produto}', [ApiMenuController::class,'destroy']);
+        Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+            Route::get('/', [UserController::class, 'show']);
+            Route::patch('/{user}', [UserController::class, 'update']);
+            Route::delete('/{user}', [UserController::class, 'destroy']);
+        });
 
-        Route::get('/categorias', [ApiCategoriaController::class,'show']);
-        Route::post('/categorias', [ApiCategoriaController::class,'store']);
-        Route::patch('/categorias/{categoria}', [ApiCategoriaController::class,'update']);
-        Route::delete('/categorias/{categoria}', [ApiCategoriaController::class,'destroy']);
+        Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
+            Route::get('/', [MenuController::class, 'index']);
+            Route::get('/{product}', [MenuController::class, 'showById']);
+            Route::get('/categoria/{category}', [MenuController::class, 'showByCategoria']);
+            Route::post('/', [MenuController::class, 'store']);
+            Route::patch('/{product}', [MenuController::class, 'update']);
+            Route::delete('/{product}', [MenuController::class, 'destroy']);
+        });
 
-        Route::get('/pedido', [ApiPedidoController::class,'show']);
-        Route::post('/pedido', [ApiPedidoController::class,'store']);
-        Route::patch('/pedido/{pedido}', [ApiPedidoController::class,'update']);
-        Route::delete('/pedido/{pedido}', [ApiPedidoController::class,'destroy']);
+        Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
+            Route::get('/', [CategoryController::class, 'index']);
+            Route::get('/{category}', [CategoryController::class, 'showById']);
+            Route::post('/', [CategoryController::class, 'store']);
+            Route::patch('/{category}', [CategoryController::class, 'update']);
+            Route::delete('/{category}', [CategoryController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
+            Route::get('/', [OrderController::class, 'show']);
+            Route::post('/', [OrderController::class, 'store']);
+            Route::patch('/{order}', [OrderController::class, 'update']);
+            Route::delete('/{order}', [OrderController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'opening_hours', 'as' => 'opening_hours.'], function () {
+            Route::get('/', [OpeningHourController::class, 'index']);
+            Route::get('/{day}', [OpeningHourController::class, 'showByWeekday']);
+            Route::post('/', [OpeningHourController::class, 'store']);
+            Route::patch('/{openingHour}', [OpeningHourController::class, 'update']);
+            Route::delete('/{openingHour}', [OpeningHourController::class, 'destroy']);
+        });
     });
 });

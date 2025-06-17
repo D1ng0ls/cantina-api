@@ -1,4 +1,4 @@
-name: Autenticação
+name: '1. Autenticação'
 description: ''
 endpoints:
   -
@@ -6,7 +6,7 @@ endpoints:
       - POST
     uri: api/cantina/register
     metadata:
-      groupName: Autenticação
+      groupName: '1. Autenticação'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -37,6 +37,16 @@ endpoints:
         description: 'Email do usuário.'
         required: true
         example: gbailey@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      student_id:
+        name: student_id
+        description: 'ID do aluno.'
+        required: true
+        example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -75,6 +85,7 @@ endpoints:
     cleanBodyParameters:
       name: architecto
       email: gbailey@example.net
+      student_id: architecto
       password: '|]|{+-'
       password_confirmation: architecto
       role: architecto
@@ -110,7 +121,7 @@ endpoints:
       - POST
     uri: api/cantina/login
     metadata:
-      groupName: Autenticação
+      groupName: '1. Autenticação'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -181,7 +192,7 @@ endpoints:
       - POST
     uri: api/cantina/logout
     metadata:
-      groupName: Autenticação
+      groupName: '1. Autenticação'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''

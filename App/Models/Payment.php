@@ -5,20 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Categoria extends Model
+class Payment extends Model
 {
     use SoftDeletes;
     
     protected $dates = ['deleted_at'];
 
-    protected $table = 'categorias';
+    protected $table = 'payments';
 
     protected $fillable = [
-        'nome',
+        'value',
+        'status',
+        'method',
+        'order_id',
     ];
 
-    public function produtos()
+    public function order()
     {
-        return $this->hasMany(Produto::class);
+        return $this->hasOne(Order::class);
     }
 }

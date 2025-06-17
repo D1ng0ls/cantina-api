@@ -5,23 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Pagamento extends Model
+class Category extends Model
 {
     use SoftDeletes;
     
     protected $dates = ['deleted_at'];
 
-    protected $table = 'pagamentos';
+    protected $table = 'categories';
 
     protected $fillable = [
-        'valor',
-        'status',
-        'metodo_pagamento',
-        'pedido_id',
+        'name',
     ];
 
-    public function pedido()
+    public function products()
     {
-        return $this->hasOne(Pedido::class);
+        return $this->hasMany(Product::class);
     }
 }

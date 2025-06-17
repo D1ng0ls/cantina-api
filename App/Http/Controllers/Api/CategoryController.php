@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\Categoria;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class ApiCategoriaController extends Controller
+class CategoryController extends ApiController
 {
     /**
      * Listar categorias paginadas (50 por página).
      * 
      * @authenticated
-     * @group Categorias
+     * @group 3. Categorias
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @response 200 {
@@ -20,25 +19,53 @@ class ApiCategoriaController extends Controller
      *   "data": [
      *     {
      *       "id": 1,
-     *       "nome": "Bebidas"
+     *       "name": "Bebidas"
      *     }
      *   ],
      *   ...
      * }
      */
-    public function show()
+    public function index()
     {
-        return response()->json(Categoria::paginate(50));
+        return response()->json(Category::paginate(50));
+    }
+
+    /**
+     * Listar produtos de uma categoria.
+     * 
+     * @authenticated
+     * @group 3. Categorias
+     * @header Authorization Bearer {token} O token de autenticação JWT
+     * 
+     * @urlParam category int required ID da categoria.
+     * 
+     * @response 200 {
+     *   "category_name": "Bebidas",
+     *   "products": [
+     *     {
+     *       "id": 1,
+     *       "name": "Coca-Cola",
+     *       "preco": 5.00
+     *     }
+     *   ]
+     * }
+     */
+    public function showById(Category $category)
+    {
+        return response()->json([
+            'category_name' => $category->name,
+            'products' => $category->products()->paginate(50),
+        ]);
     }
 
     /**
      * Cadastrar nova categoria.
      * 
      * @authenticated
-     * @group Categorias
+     * @group 3. Categorias
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
-     * @bodyParam nome string required Nome da categoria.
+     * @bodyParam name string required Nome da categoria.
      * 
      * @response 200 {
      *   "success": "Categoria cadastrada com sucesso"
@@ -49,11 +76,11 @@ class ApiCategoriaController extends Controller
         $this->authorize('patron');
 
         $request->validate([
-            'nome' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
-        Categoria::create([
-            'nome' => $request->nome,
+        Category::create([
+            'name' => $request->name,
         ]);
 
         return response()->json([
@@ -65,26 +92,26 @@ class ApiCategoriaController extends Controller
      * Atualizar categoria.
      * 
      * @authenticated
-     * @group Categorias
+     * @group 3. Categorias
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @urlParam categoria int required ID da categoria.
-     * @bodyParam nome string required Nome da categoria.
+     * @bodyParam name string required Nome da categoria.
      * 
      * @response 200 {
      *   "success": "Categoria atualizada com sucesso"
      * }
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, Category $category)
     {
         $this->authorize('patron');
 
         $request->validate([
-            'nome' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
         ]);
 
-        $categoria->update([
-            'nome' => $request->nome,
+        $category->update([
+            'name' => $request->name,
         ]);
 
         return response()->json([
@@ -96,7 +123,7 @@ class ApiCategoriaController extends Controller
      * Excluir categoria.
      * 
      * @authenticated
-     * @group Categorias
+     * @group 3. Categorias
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @urlParam categoria int required ID da categoria.
@@ -105,11 +132,11 @@ class ApiCategoriaController extends Controller
      *   "success": "Categoria excluída com sucesso"
      * }
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(Category $category)
     {
         $this->authorize('patron');
 
-        $categoria->delete();
+        $category->delete();
 
         return response()->json([
             'success' => 'Categoria excluída com sucesso',

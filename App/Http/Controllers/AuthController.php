@@ -13,10 +13,11 @@ class AuthController extends Controller
     /**
      * Registrar novo usuário.
      * 
-     * @group Autenticação
+     * @group 1. Autenticação
      * 
      * @bodyParam name string required Nome do usuário.
      * @bodyParam email string required Email do usuário.
+     * @bodyParam student_id string required ID do aluno.
      * @bodyParam password string required Senha do usuário. Mínimo 8 caracteres.
      * @bodyParam password_confirmation string required Confirmação da senha. Deve ser igual à password.
      * @bodyParam role string Role do usuário. Aceita "user" ou "patron".
@@ -41,22 +42,16 @@ class AuthController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'student_id' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        if ($request->input('role')) {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
-        } else {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
-        }
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'student_id' => $request->student_id,
+            'password' => Hash::make($request->password),
+        ]);
 
         $token = $user->createToken('API Token')->plainTextToken;
         Auth::login($user);
@@ -70,7 +65,7 @@ class AuthController extends Controller
     /**
      * Login do usuário.
      * 
-     * @group Autenticação
+     * @group 1. Autenticação
      * 
      * @bodyParam email string required Email do usuário.
      * @bodyParam password string required Senha do usuário.
@@ -117,7 +112,7 @@ class AuthController extends Controller
      * Logout do usuário autenticado.
      * 
      * @authenticated
-     * @group Autenticação
+     * @group 1. Autenticação
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @response 200 {

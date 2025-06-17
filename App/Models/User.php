@@ -30,6 +30,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'student_id',
     ];
 
     /**
@@ -40,6 +41,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'role',
     ];
 
     /**
@@ -55,8 +57,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function pedidos()
+    public function orders()
     {
-        return $this->hasMany(Pedido::class);
+        return $this->hasMany(Order::class, 'user_id', 'id');
     }
 }

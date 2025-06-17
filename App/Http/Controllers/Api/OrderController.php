@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Pedido;
-use App\Models\Produto;
+use App\Models\Order;
+use App\Models\Product;
 
-class ApiPedidoController extends Controller
+class OrderController extends ApiController
 {
     /**
      * Listar pedidos (paginação de 10 em 10).
      * 
      * @authenticated
-     * @group Pedidos
+     * @group 5. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @response 200 {
@@ -51,14 +50,14 @@ class ApiPedidoController extends Controller
      */
     public function show()
     {
-        return response()->json(Pedido::with(['produtos', 'usuario', 'pagamento'])->paginate(10));
+        return response()->json(Order::with(['products', 'users', 'payments'])->paginate(10));
     }
 
     /**
      * Criar um novo pedido com produtos.
      * 
      * @authenticated
-     * @group Pedidos
+     * @group 5. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @bodyParam produtos array required Lista de produtos.
@@ -78,16 +77,16 @@ class ApiPedidoController extends Controller
     {
         // Validação de dados
         $request->validate([
-            'produtos' => 'required|array',
-            'produtos.*.id' => 'required|exists:produtos,id',
-            'produtos.*.quantidade' => 'required|numeric',
+            'products' => 'required|array',
+            'products.*.id' => 'required|exists:products,id',
+            'products.*.quantidade' => 'required|numeric',
         ]);
 
         $calculo_valor_total = 0;
 
         // Cálculo do valor total com base no valor do banco
-        foreach ($request->produtos as $produto) {
-            $produto_data = Produto::find($produto['id']);
+        foreach ($request->products as $produto) {
+            $produto_data = Product::find($produto['id']);
 
             if (!$produto_data) {
                 return response()->json([
@@ -100,14 +99,14 @@ class ApiPedidoController extends Controller
         }
 
         // Criando o pedido
-        $pedido = Pedido::create([
+        $order = Order::create([
             'valor_total' => $calculo_valor_total,
             'usuario_id' => Auth::user()->id,
         ]);
 
         // Associando os produtos ao pedido
-        foreach ($request->produtos as $produto) {
-            $produto_data = Produto::find($produto['id']);
+        foreach ($request->products as $produto) {
+            $produto_data = Product::find($produto['id']);
 
             if (!$produto_data) {
                 return response()->json([
@@ -116,10 +115,10 @@ class ApiPedidoController extends Controller
             }
 
             // Associando os produtos ao pedido com quantidade e valor unitário
-            $pedido->produtos()->attach($produto['id'], [
+            $order->produtos()->attach($produto['id'], [
                 'quantidade' => $produto['quantidade'],
                 'valor_unitario' => $produto_data->preco,
-                'pedido_id' => $pedido->id,
+                'pedido_id' => $order->id,
                 'produto_id' => $produto['id'],
             ]);
         }
@@ -127,7 +126,7 @@ class ApiPedidoController extends Controller
         // Retornando sucesso com o id do pedido
         return response()->json([
             'success' => 'Pedido realizado com sucesso',
-            'id_pedido' => $pedido->id,  // Enviando o id do pedido criado
+            'id_pedido' => $order->id,  // Enviando o id do pedido criado
         ]);
     }
 
@@ -135,7 +134,7 @@ class ApiPedidoController extends Controller
      * Atualizar o status de um pedido.
      * 
      * @authenticated
-     * @group Pedidos
+     * @group 5. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @urlParam pedido int required ID do pedido.
@@ -145,7 +144,7 @@ class ApiPedidoController extends Controller
      *   "success": "Status do pedido atualizado com sucesso"
      * }
      */
-    public function update(Request $request, Pedido $pedido)
+    public function update(Request $request, Order $pedido)
     {
         $this->authorize('patron');
 
@@ -166,7 +165,7 @@ class ApiPedidoController extends Controller
      * Deletar um pedido.
      * 
      * @authenticated
-     * @group Pedidos
+     * @group 5. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @urlParam pedido int required ID do pedido.
@@ -175,7 +174,7 @@ class ApiPedidoController extends Controller
      *   "success": "Pedido removido com sucesso"
      * }
      */
-    public function destroy(Pedido $pedido)
+    public function destroy(Order $pedido)
     {
         $this->authorize('patron');
 

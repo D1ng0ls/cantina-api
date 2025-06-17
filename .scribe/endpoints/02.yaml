@@ -1,16 +1,16 @@
-name: Categorias
+name: '4. Produtos'
 description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/cantina/categorias
+    uri: api/cantina/menu
     metadata:
-      groupName: Categorias
+      groupName: '4. Produtos'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Listar categorias paginadas (50 por página).'
+      title: 'Listar produtos com suas categorias (paginado 50 por vez).'
       description: ''
       authenticated: true
       custom: []
@@ -34,8 +34,13 @@ endpoints:
             "data": [
               {
                 "id": 1,
-                "nome": "Bebidas"
-              }
+                "name": "Produto X",
+                "category": {
+                  "id": 3,
+                  "name": "Categoria Y"
+                }
+              },
+              ...
             ],
             ...
           }
@@ -50,14 +55,152 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - POST
-    uri: api/cantina/categorias
+      - GET
+    uri: 'api/cantina/menu/{product_id}'
     metadata:
-      groupName: Categorias
+      groupName: '4. Produtos'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Cadastrar nova categoria.'
+      title: 'Mostrar produto pelo ID com categoria.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      product:
+        name: product
+        description: 'ID do produto. Exemplo: 1'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      product_id: 16
+      product: 16
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "name": "Produto X",
+            "category": {
+              "id": 3,
+              "name": "Categoria Y"
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/cantina/menu/categoria/{category_id}'
+    metadata:
+      groupName: '4. Produtos'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mostrar produtos filtrando pela categoria (paginado 50 por vez).'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      category_id:
+        name: category_id
+        description: 'The ID of the category.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      category:
+        name: category
+        description: 'ID da categoria.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      category_id: 16
+      category: 16
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 3,
+            "name": "Categoria Y",
+            "products": [
+              {
+                "id": 1,
+                "name": "Produto X",
+                ...
+              },
+              ...
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/cantina/menu
+    metadata:
+      groupName: '4. Produtos'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Cadastrar novo produto.'
       description: ''
       authenticated: true
       custom: []
@@ -70,9 +213,9 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      nome:
-        name: nome
-        description: 'Nome da categoria.'
+      name:
+        name: name
+        description: 'Nome do produto.'
         required: true
         example: architecto
         type: string
@@ -80,15 +223,70 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
+      description:
+        name: description
+        description: 'Descrição do produto.'
+        required: true
+        example: 'Eius et animi quos velit et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      image:
+        name: image
+        description: 'URL da imagem.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      price:
+        name: price
+        description: 'Preço do produto.'
+        required: true
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      quantity:
+        name: quantity
+        description: 'Quantidade disponível.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      category_id:
+        name: category_id
+        description: 'ID da categoria.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
     cleanBodyParameters:
-      nome: architecto
+      name: architecto
+      description: 'Eius et animi quos velit et.'
+      image: architecto
+      price: 4326.41688
+      quantity: 16
+      category_id: 16
     fileParameters: []
     responses:
       -
         status: 200
         content: |-
           {
-            "success": "Categoria cadastrada com sucesso"
+            "success": "Produto cadastrado com sucesso"
           }
         headers: []
         description: ''
@@ -102,13 +300,13 @@ endpoints:
   -
     httpMethods:
       - PATCH
-    uri: 'api/cantina/categorias/{categoria_id}'
+    uri: 'api/cantina/menu/{product_id}'
     metadata:
-      groupName: Categorias
+      groupName: '4. Produtos'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Atualizar categoria.'
+      title: 'Atualizar produto.'
       description: ''
       authenticated: true
       custom: []
@@ -117,9 +315,9 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      categoria_id:
-        name: categoria_id
-        description: 'The ID of the categoria.'
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
         required: true
         example: 16
         type: integer
@@ -127,9 +325,9 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
-      categoria:
-        name: categoria
-        description: 'ID da categoria.'
+      produto:
+        name: produto
+        description: 'ID do produto.'
         required: true
         example: 16
         type: integer
@@ -138,14 +336,14 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      categoria_id: 16
-      categoria: 16
+      product_id: 16
+      produto: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      nome:
-        name: nome
-        description: 'Nome da categoria.'
+      name:
+        name: name
+        description: 'Nome do produto.'
         required: true
         example: architecto
         type: string
@@ -153,15 +351,81 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
+      description:
+        name: description
+        description: 'Descrição do produto.'
+        required: true
+        example: 'Eius et animi quos velit et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      image:
+        name: image
+        description: 'URL da imagem.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      price:
+        name: price
+        description: 'Preço do produto.'
+        required: true
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      quantity:
+        name: quantity
+        description: 'Quantidade disponível.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      active:
+        name: active
+        description: ''
+        required: true
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      category_id:
+        name: category_id
+        description: 'ID da categoria.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
     cleanBodyParameters:
-      nome: architecto
+      name: architecto
+      description: 'Eius et animi quos velit et.'
+      image: architecto
+      price: 4326.41688
+      quantity: 16
+      active: false
+      category_id: 16
     fileParameters: []
     responses:
       -
         status: 200
         content: |-
           {
-            "success": "Categoria atualizada com sucesso"
+            "message": "Produto atualizado com sucesso"
           }
         headers: []
         description: ''
@@ -175,13 +439,13 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/cantina/categorias/{categoria_id}'
+    uri: 'api/cantina/menu/{product_id}'
     metadata:
-      groupName: Categorias
+      groupName: '4. Produtos'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Excluir categoria.'
+      title: 'Excluir produto.'
       description: ''
       authenticated: true
       custom: []
@@ -190,9 +454,9 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      categoria_id:
-        name: categoria_id
-        description: 'The ID of the categoria.'
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
         required: true
         example: 16
         type: integer
@@ -200,9 +464,9 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
-      categoria:
-        name: categoria
-        description: 'ID da categoria.'
+      product:
+        name: product
+        description: 'ID do produto.'
         required: true
         example: 16
         type: integer
@@ -211,8 +475,8 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      categoria_id: 16
-      categoria: 16
+      product_id: 16
+      product: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -223,7 +487,7 @@ endpoints:
         status: 200
         content: |-
           {
-            "success": "Categoria excluída com sucesso"
+            "message": "Produto excluído com sucesso"
           }
         headers: []
         description: ''

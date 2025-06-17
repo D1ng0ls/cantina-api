@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('opening_hours', function (Blueprint $table) {
             $table->id();
-            $table->decimal('total_value', 10, 2);
-            $table->enum('status', ['open', 'awaiting_payment', 'approved', 'in_preparation', 'ready', 'canceled'])->default('open');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->tinyInteger('day');
+            $table->time('open');
+            $table->time('close');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('opening_hours');
     }
 };
