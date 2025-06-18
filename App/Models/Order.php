@@ -11,7 +11,7 @@ class Order extends Model
     
     protected $dates = ['deleted_at'];
 
-    protected $table = 'pedidos';
+    protected $table = 'orders';
 
     protected $fillable = [
         'total_value',

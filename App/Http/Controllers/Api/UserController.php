@@ -65,22 +65,38 @@ class UserController extends ApiController
     }
 
     /**
-     * Remover perfil do usuário.
+     * Alterar senha do usuário.
      * 
      * @authenticated
      * @group 2. Usuário
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
+     * @bodyParam old_password string required Senha antiga.
+     * @bodyParam password string required Nova senha.
+     * 
      * @response 200 {
-     *   "success": "Usuário removido com sucesso"
+     *   "success": "Senha alterada com sucesso"
      * }
      */
-    public function destroy(Request $request)
+    public function changePassword(Request $request)
     {
-        auth()->user()->delete();
+        $request->validate([
+            'old_password' => 'required|string',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return response()->json([
+                'error' => 'Senha antiga incorreta',
+            ], 401);
+        }
+
+        auth()->user()->update([
+            'password' => Hash::make($request->password),
+        ]);
 
         return response()->json([
-            'success' => 'Usuário removido com sucesso',
+            'success' => 'Senha alterada com sucesso',
         ]);
     }
 }

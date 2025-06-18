@@ -6,13 +6,13 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/cantina/menu
+    uri: api/cantina/products/inactives
     metadata:
       groupName: '4. Produtos'
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Listar produtos com suas categorias (paginado 50 por vez).'
+      title: 'Listar produtos inativos com suas categorias (paginado 50 por vez).'
       description: ''
       authenticated: true
       custom: []
@@ -57,8 +57,290 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - DELETE
+    uri: 'api/cantina/products/remove-image/{product_id}'
+    metadata:
+      groupName: '4. Produtos'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remover imagem do produto.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      product:
+        name: product
+        description: 'ID do produto.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      product_id: 2
+      product: 16
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Imagem removida com sucesso"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/cantina/products/active/{product_id}'
+    metadata:
+      groupName: '4. Produtos'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Ativar/desativar produto.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      product:
+        name: product
+        description: 'ID do produto.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      product_id: 2
+      product: 16
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Produto ativado/desativado com sucesso"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
       - GET
-    uri: 'api/cantina/menu/{product_id}'
+    uri: api/cantina/products
+    metadata:
+      groupName: '4. Produtos'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Listar produtos ativos com suas categorias (paginado 50 por vez).'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "current_page": 1,
+            "data": [
+              {
+                "id": 1,
+                "name": "Produto X",
+                "category": {
+                  "id": 3,
+                  "name": "Categoria Y"
+                }
+              },
+              ...
+            ],
+            ...
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/cantina/products
+    metadata:
+      groupName: '4. Produtos'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Cadastrar novo produto.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Nome do produto.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'Descrição do produto.'
+        required: true
+        example: 'Eius et animi quos velit et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      image:
+        name: image
+        description: 'nullable Imagem do produto.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      price:
+        name: price
+        description: 'Preço do produto.'
+        required: true
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      quantity:
+        name: quantity
+        description: 'Quantidade disponível.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      category_id:
+        name: category_id
+        description: 'ID da categoria.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: architecto
+      description: 'Eius et animi quos velit et.'
+      price: 4326.41688
+      quantity: 16
+      category_id: 16
+    fileParameters:
+      image: null
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "success": "Produto cadastrado com sucesso"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/cantina/products/{id}'
     metadata:
       groupName: '4. Produtos'
       groupDescription: ''
@@ -73,11 +355,11 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      product_id:
-        name: product_id
+      id:
+        name: id
         description: 'The ID of the product.'
         required: true
-        example: 16
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -94,7 +376,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      product_id: 16
+      id: 2
       product: 16
     queryParameters: []
     cleanQueryParameters: []
@@ -124,185 +406,9 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - GET
-    uri: 'api/cantina/menu/categoria/{category_id}'
-    metadata:
-      groupName: '4. Produtos'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Mostrar produtos filtrando pela categoria (paginado 50 por vez).'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {token} O token de autenticação JWT'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      category_id:
-        name: category_id
-        description: 'The ID of the category.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      category:
-        name: category
-        description: 'ID da categoria.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      category_id: 16
-      category: 16
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-            "id": 3,
-            "name": "Categoria Y",
-            "products": [
-              {
-                "id": 1,
-                "name": "Produto X",
-                ...
-              },
-              ...
-            ]
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/cantina/menu
-    metadata:
-      groupName: '4. Produtos'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Cadastrar novo produto.'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {token} O token de autenticação JWT'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      name:
-        name: name
-        description: 'Nome do produto.'
-        required: true
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      description:
-        name: description
-        description: 'Descrição do produto.'
-        required: true
-        example: 'Eius et animi quos velit et.'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      image:
-        name: image
-        description: 'URL da imagem.'
-        required: true
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      price:
-        name: price
-        description: 'Preço do produto.'
-        required: true
-        example: 4326.41688
-        type: number
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      quantity:
-        name: quantity
-        description: 'Quantidade disponível.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      category_id:
-        name: category_id
-        description: 'ID da categoria.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanBodyParameters:
-      name: architecto
-      description: 'Eius et animi quos velit et.'
-      image: architecto
-      price: 4326.41688
-      quantity: 16
-      category_id: 16
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-            "success": "Produto cadastrado com sucesso"
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
+      - PUT
       - PATCH
-    uri: 'api/cantina/menu/{product_id}'
+    uri: 'api/cantina/products/{id}'
     metadata:
       groupName: '4. Produtos'
       groupDescription: ''
@@ -317,11 +423,11 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      product_id:
-        name: product_id
+      id:
+        name: id
         description: 'The ID of the product.'
         required: true
-        example: 16
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -338,7 +444,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      product_id: 16
+      id: 2
       produto: 16
     queryParameters: []
     cleanQueryParameters: []
@@ -365,13 +471,13 @@ endpoints:
         custom: []
       image:
         name: image
-        description: 'URL da imagem.'
-        required: true
+        description: 'nullable file Imagem do produto.'
+        required: false
         example: architecto
         type: string
         enumValues: []
         exampleWasSpecified: false
-        nullable: false
+        nullable: true
         custom: []
       price:
         name: price
@@ -397,7 +503,7 @@ endpoints:
         name: active
         description: ''
         required: true
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -419,7 +525,7 @@ endpoints:
       image: architecto
       price: 4326.41688
       quantity: 16
-      active: false
+      active: true
       category_id: 16
     fileParameters: []
     responses:
@@ -441,7 +547,7 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/cantina/menu/{product_id}'
+    uri: 'api/cantina/products/{id}'
     metadata:
       groupName: '4. Produtos'
       groupDescription: ''
@@ -456,11 +562,11 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      product_id:
-        name: product_id
+      id:
+        name: id
         description: 'The ID of the product.'
         required: true
-        example: 16
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -477,7 +583,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      product_id: 16
+      id: 2
       product: 16
     queryParameters: []
     cleanQueryParameters: []

@@ -4,7 +4,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/cantina/opening_hours
+    uri: api/cantina/opening-hours
     metadata:
       groupName: '6. Horários'
       groupDescription: ''
@@ -50,66 +50,8 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - GET
-    uri: 'api/cantina/opening_hours/{day}'
-    metadata:
-      groupName: '6. Horários'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Mostrar horário de funcionamento pelo dia da semana.'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {token} O token de autenticação JWT'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      day:
-        name: day
-        description: 'ID dia da semana (0 = Domingo, 1 = Segunda, ...).'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      day: 16
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-            "data": [
-              {
-                "id": 1,
-                "day": 0,
-                "open": "08:00:00",
-                "close": "18:00:00"
-              }
-            ]
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
       - POST
-    uri: api/cantina/opening_hours
+    uri: api/cantina/opening-hours
     metadata:
       groupName: '6. Horários'
       groupDescription: ''
@@ -181,8 +123,9 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - PUT
       - PATCH
-    uri: 'api/cantina/opening_hours/{openingHour_id}'
+    uri: 'api/cantina/opening-hours/{openingHour_id}'
     metadata:
       groupName: '6. Horários'
       groupDescription: ''
@@ -201,7 +144,7 @@ endpoints:
         name: openingHour_id
         description: 'The ID of the openingHour.'
         required: true
-        example: 16
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -218,7 +161,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      openingHour_id: 16
+      openingHour_id: 2
       opening_hour: 16
     queryParameters: []
     cleanQueryParameters: []
@@ -277,7 +220,7 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/cantina/opening_hours/{openingHour_id}'
+    uri: 'api/cantina/opening-hours/{openingHour_id}'
     metadata:
       groupName: '6. Horários'
       groupDescription: ''
@@ -296,7 +239,7 @@ endpoints:
         name: openingHour_id
         description: 'The ID of the openingHour.'
         required: true
-        example: 16
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -313,7 +256,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      openingHour_id: 16
+      openingHour_id: 2
       opening_hour: 16
     queryParameters: []
     cleanQueryParameters: []
@@ -326,6 +269,64 @@ endpoints:
         content: |-
           {
             "success": "Horário excluído com sucesso"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/cantina/opening-hours/by-weekday/{day}'
+    metadata:
+      groupName: '6. Horários'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mostrar horário de funcionamento pelo dia da semana.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      day:
+        name: day
+        description: 'ID dia da semana (0 = Domingo, 1 = Segunda, ...).'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      day: 16
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "data": [
+              {
+                "id": 1,
+                "day": 0,
+                "open": "08:00:00",
+                "close": "18:00:00"
+              }
+            ]
           }
         headers: []
         description: ''

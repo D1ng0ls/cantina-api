@@ -6,7 +6,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/cantina/order
+    uri: api/cantina/orders
     metadata:
       groupName: '5. Pedidos'
       groupDescription: ''
@@ -74,7 +74,7 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/cantina/order
+    uri: api/cantina/orders
     metadata:
       groupName: '5. Pedidos'
       groupDescription: ''
@@ -114,8 +114,8 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
-      'products[].quantidade':
-        name: 'products[].quantidade'
+      'products[].quantity':
+        name: 'products[].quantity'
         description: ''
         required: true
         example: 4326.41688
@@ -159,7 +159,7 @@ endpoints:
       products:
         -
           id: architecto
-          quantidade: 4326.41688
+          quantity: 4326.41688
       produtos:
         - architecto
     fileParameters: []
@@ -191,8 +191,92 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - GET
+    uri: 'api/cantina/orders/{id}'
+    metadata:
+      groupName: '5. Pedidos'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mostrar pedido pelo ID.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the order.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      order:
+        name: order
+        description: 'ID do pedido.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+      order: 16
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "valor_total": 100,
+            "status": "aberto",
+            "usuario": {
+              "id": 1,
+              "name": "John Doe"
+            },
+            "pagamento": [
+              {
+                "id": 1,
+                "status": "aprovado"
+              }
+            ],
+            "produtos": [
+              {
+                "id": 1,
+                "nome": "Produto X",
+                "quantidade": 1,
+                "valor_unitario": 100
+              },
+              ...
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
       - PATCH
-    uri: 'api/cantina/order/{order}'
+    uri: 'api/cantina/orders/{id}'
     metadata:
       groupName: '5. Pedidos'
       groupDescription: ''
@@ -207,11 +291,11 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      order:
-        name: order
-        description: 'The order.'
+      id:
+        name: id
+        description: 'The ID of the order.'
         required: true
-        example: 16
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -228,14 +312,14 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      order: 16
+      id: 1
       pedido: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       status:
         name: status
-        description: 'Novo status. Valores possíveis: aberto, aguardando_pagamento, aprovado, em_preparacao, pronto, cancelado.'
+        description: 'Novo status. Valores possíveis: open, awaiting_payment, approved, in_preparation, ready, canceled.'
         required: true
         example: architecto
         type: string
@@ -265,7 +349,7 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/cantina/order/{order}'
+    uri: 'api/cantina/orders/{id}'
     metadata:
       groupName: '5. Pedidos'
       groupDescription: ''
@@ -280,11 +364,11 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      order:
-        name: order
-        description: 'The order.'
+      id:
+        name: id
+        description: 'The ID of the order.'
         required: true
-        example: 16
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -301,7 +385,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      order: 16
+      id: 1
       pedido: 16
     queryParameters: []
     cleanQueryParameters: []

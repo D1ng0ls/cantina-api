@@ -8,30 +8,41 @@ use Illuminate\Http\Request;
 class CategoryController extends ApiController
 {
     /**
-     * Listar categorias paginadas (50 por página).
+     * Listar categorias com seus produtos.
      * 
      * @authenticated
      * @group 3. Categorias
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @response 200 {
-     *   "current_page": 1,
-     *   "data": [
+     *   "categories": [
      *     {
-     *       "id": 1,
-     *       "name": "Bebidas"
-     *     }
-     *   ],
-     *   ...
+     *       "id": 3,
+     *       "name": "Categoria Y",
+     *       "products": [
+     *         {
+     *           "id": 1,
+     *           "name": "Produto X",
+     *           ...
+     *         },
+     *         ...
+     *       ]
+     *     },
+     *     ...
+     *   ]
      * }
      */
     public function index()
     {
-        return response()->json(Category::paginate(50));
+        return response()->json(
+            Category::with(['products' => function ($query) {
+                $query->orderBy('name');
+            }])->orderBy('name')->get()
+        );
     }
 
     /**
-     * Listar produtos de uma categoria.
+     * Mostrar produtos filtrando pela categoria (paginado 50 por vez).
      * 
      * @authenticated
      * @group 3. Categorias
@@ -40,22 +51,25 @@ class CategoryController extends ApiController
      * @urlParam category int required ID da categoria.
      * 
      * @response 200 {
-     *   "category_name": "Bebidas",
+     *   "id": 3,
+     *   "name": "Categoria Y",
      *   "products": [
      *     {
      *       "id": 1,
-     *       "name": "Coca-Cola",
-     *       "preco": 5.00
-     *     }
+     *       "name": "Produto X",
+     *       ...
+     *     },
+     *     ...
      *   ]
      * }
      */
-    public function showById(Category $category)
+    public function show(Category $category)
     {
-        return response()->json([
-            'category_name' => $category->name,
-            'products' => $category->products()->paginate(50),
-        ]);
+        $category->load(['products' => function ($query) {
+            $query->paginate(50);
+        }]);
+
+        return response()->json($category);
     }
 
     /**

@@ -12,7 +12,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Listar categorias paginadas (50 por página).'
+      title: 'Listar categorias com seus produtos.'
       description: ''
       authenticated: true
       custom: []
@@ -32,82 +32,20 @@ endpoints:
         status: 200
         content: |-
           {
-            "current_page": 1,
-            "data": [
+            "categories": [
               {
-                "id": 1,
-                "name": "Bebidas"
-              }
-            ],
-            ...
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/cantina/categories/{category_id}'
-    metadata:
-      groupName: '3. Categorias'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Listar produtos de uma categoria.'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {token} O token de autenticação JWT'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      category_id:
-        name: category_id
-        description: 'The ID of the category.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      category:
-        name: category
-        description: 'ID da categoria.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      category_id: 16
-      category: 16
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-            "category_name": "Bebidas",
-            "products": [
-              {
-                "id": 1,
-                "name": "Coca-Cola",
-                "preco": 5.00
-              }
+                "id": 3,
+                "name": "Categoria Y",
+                "products": [
+                  {
+                    "id": 1,
+                    "name": "Produto X",
+                    ...
+                  },
+                  ...
+                ]
+              },
+              ...
             ]
           }
         headers: []
@@ -172,8 +110,80 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - GET
+    uri: 'api/cantina/categories/{id}'
+    metadata:
+      groupName: '3. Categorias'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mostrar produtos filtrando pela categoria (paginado 50 por vez).'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the category.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      category:
+        name: category
+        description: 'ID da categoria.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 2
+      category: 16
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 3,
+            "name": "Categoria Y",
+            "products": [
+              {
+                "id": 1,
+                "name": "Produto X",
+                ...
+              },
+              ...
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
       - PATCH
-    uri: 'api/cantina/categories/{category_id}'
+    uri: 'api/cantina/categories/{id}'
     metadata:
       groupName: '3. Categorias'
       groupDescription: ''
@@ -188,11 +198,11 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      category_id:
-        name: category_id
+      id:
+        name: id
         description: 'The ID of the category.'
         required: true
-        example: 16
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -209,7 +219,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      category_id: 16
+      id: 2
       categoria: 16
     queryParameters: []
     cleanQueryParameters: []
@@ -246,7 +256,7 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/cantina/categories/{category_id}'
+    uri: 'api/cantina/categories/{id}'
     metadata:
       groupName: '3. Categorias'
       groupDescription: ''
@@ -261,11 +271,11 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      category_id:
-        name: category_id
+      id:
+        name: id
         description: 'The ID of the category.'
         required: true
-        example: 16
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -282,7 +292,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      category_id: 16
+      id: 2
       categoria: 16
     queryParameters: []
     cleanQueryParameters: []

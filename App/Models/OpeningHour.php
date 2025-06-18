@@ -10,7 +10,7 @@ class OpeningHour extends Model
 
     protected $fillable = [
         'day',
-        'opening_time',
-        'closing_time',
+        'open',
+        'close',
     ];
 }

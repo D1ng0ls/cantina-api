@@ -48,9 +48,48 @@ class OrderController extends ApiController
      *   ...
      * }
      */
-    public function show()
+    public function index()
     {
-        return response()->json(Order::with(['products', 'users', 'payments'])->paginate(10));
+        return response()->json(Order::with(['products', 'user', 'payment'])->paginate(10));
+    }
+
+    /**
+     * Mostrar pedido pelo ID.
+     * 
+     * @authenticated
+     * @group 5. Pedidos
+     * @header Authorization Bearer {token} O token de autenticação JWT
+     * 
+     * @urlParam order int required ID do pedido.
+     * 
+     * @response 200 {
+     *   "id": 1,
+     *   "valor_total": 100,
+     *   "status": "aberto",
+     *   "usuario": {
+     *     "id": 1,
+     *     "name": "John Doe"
+     *   },
+     *   "pagamento": [
+     *     {
+     *       "id": 1,
+     *       "status": "aprovado"
+     *     }
+     *   ],
+     *   "produtos": [
+     *     {
+     *       "id": 1,
+     *       "nome": "Produto X",
+     *       "quantidade": 1,
+     *       "valor_unitario": 100
+     *     },
+     *     ...
+     *   ]
+     * }
+     */
+    public function show(Order $order)
+    {
+        return response()->json($order->load(['products', 'user', 'payment']));
     }
 
     /**
@@ -79,7 +118,14 @@ class OrderController extends ApiController
         $request->validate([
             'products' => 'required|array',
             'products.*.id' => 'required|exists:products,id',
-            'products.*.quantidade' => 'required|numeric',
+            'products.*.quantity' => 'required|numeric',
+        ], [
+            'products.required' => 'Lista de produtos é obrigatória.',
+            'products.array' => 'Lista de produtos deve ser um array.',
+            'products.*.id.required' => 'ID do produto é obrigatório.',
+            'products.*.id.exists' => 'Produto não encontrado.',
+            'products.*.quantity.required' => 'Quantidade do produto é obrigatória.',
+            'products.*.quantity.numeric' => 'Quantidade do produto deve ser um número.',
         ]);
 
         $calculo_valor_total = 0;
@@ -95,13 +141,13 @@ class OrderController extends ApiController
             }
 
             // Calculando o valor total
-            $calculo_valor_total += $produto_data->preco * $produto['quantidade'];
+            $calculo_valor_total += $produto_data->price * $produto['quantity'];
         }
 
         // Criando o pedido
         $order = Order::create([
-            'valor_total' => $calculo_valor_total,
-            'usuario_id' => Auth::user()->id,
+            'total_value' => $calculo_valor_total,
+            'user_id' => Auth::user()->id,
         ]);
 
         // Associando os produtos ao pedido
@@ -115,11 +161,11 @@ class OrderController extends ApiController
             }
 
             // Associando os produtos ao pedido com quantidade e valor unitário
-            $order->produtos()->attach($produto['id'], [
-                'quantidade' => $produto['quantidade'],
-                'valor_unitario' => $produto_data->preco,
-                'pedido_id' => $order->id,
-                'produto_id' => $produto['id'],
+            $order->products()->attach($produto['id'], [
+                'quantity' => $produto['quantity'],
+                'value_unitary' => $produto_data->price,
+                'order_id' => $order->id,
+                'product_id' => $produto['id'],
             ]);
         }
 
@@ -138,7 +184,7 @@ class OrderController extends ApiController
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @urlParam pedido int required ID do pedido.
-     * @bodyParam status string required Novo status. Valores possíveis: aberto, aguardando_pagamento, aprovado, em_preparacao, pronto, cancelado.
+     * @bodyParam status string required Novo status. Valores possíveis: open, awaiting_payment, approved, in_preparation, ready, canceled.
      * 
      * @response 200 {
      *   "success": "Status do pedido atualizado com sucesso"
@@ -149,7 +195,10 @@ class OrderController extends ApiController
         $this->authorize('patron');
 
         $request->validate([
-            'status' => 'required|in:aberto,aguardando_pagamento,aprovado,em_preparacao,pronto,cancelado'
+            'status' => 'required|in:open,awaiting_payment,approved,in_preparation,ready,canceled',
+        ], [
+            'status.required' => 'O status do pedido é obrigatório.',
+            'status.in' => 'O status do pedido deve ser um dos seguintes: open, awaiting_payment, approved, in_preparation, ready, canceled',
         ]);
 
         $pedido->update([
