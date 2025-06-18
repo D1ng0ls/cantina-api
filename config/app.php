@@ -160,11 +160,11 @@ return [
         /*
         * Application Service Providers...
         */
-        app\Providers\AppServiceProvider::class,
-        app\Providers\EventServiceProvider::class,
-        app\Providers\RouteServiceProvider::class,
-        app\Providers\AuthServiceProvider::class,
-        app\Providers\MercadoPagoServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        App\Providers\MercadoPagoServiceProvider::class,
     ],
 
     'aliases' => [
