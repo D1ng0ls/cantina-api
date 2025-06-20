@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use SoftDeletes;
-    
+
     protected $dates = ['deleted_at'];
 
     protected $table = 'products';
@@ -30,6 +30,8 @@ class Product extends Model
 
     public function orders()
     {
-        return $this->belongsToMany(Product::class, 'product_orders')->withPivot('quantity', 'value_unitary'); 
+        return $this->belongsToMany(Order::class, 'product_orders', 'product_id', 'order_id')
+            ->withPivot('quantity', 'value_unitary')
+            ->withTimestamps();
     }
 }

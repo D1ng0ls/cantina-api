@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\OpeningHourController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\Webhook\MercadoPago\MessageController;
 
 Route::prefix('cantina')->group(function () {
     Route::middleware('guest')->group(function () {
@@ -38,3 +39,5 @@ Route::prefix('cantina')->group(function () {
         Route::get('/opening-hours/by-weekday/{day}', [OpeningHourController::class, 'showByWeekday'])->name('opening-hours.showByWeekday');
     });
 });
+
+Route::post('/mp/webhook', [MessageController::class, 'webhook'])->name('mp.webhook');

@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
+use App\Services\MercadoPagoService;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends ApiController
 {
@@ -128,52 +130,87 @@ class OrderController extends ApiController
             'products.*.quantity.numeric' => 'Quantidade do produto deve ser um número.',
         ]);
 
-        $calculo_valor_total = 0;
+        $mercadoPagoService = app(MercadoPagoService::class);
 
-        // Cálculo do valor total com base no valor do banco
-        foreach ($request->products as $produto) {
-            $produto_data = Product::find($produto['id']);
+        DB::beginTransaction();
 
-            if (!$produto_data) {
-                return response()->json([
-                    'error' => 'Produto não encontrado.',
-                ], 404);
+        try {
+            $calculo_valor_total = 0;
+            $mp_items = []; // Array para os itens do Mercado Pago
+            $user = Auth::user();
+
+            // Loop único pra calcular o total e já montar os itens pro MP
+            foreach ($request->products as $produto) {
+                $produto_data = Product::find($produto['id']);
+
+                // O if de produto não encontrado pode ser removido, pois a validação já faz isso.
+                // Mas se quiser manter por segurança extra, sem problemas.
+
+                $calculo_valor_total += $produto_data->price * $produto['quantity'];
+
+                // Adiciona o item no formato que a API do MP espera
+                $mp_items[] = [
+                    'title' => $produto_data->name, // Supondo que seu produto tenha um campo 'name'
+                    'quantity' => (int) $produto['quantity'],
+                    'unit_price' => (float) $produto_data->price,
+                    'currency_id' => 'BRL' // Moeda
+                ];
             }
 
-            // Calculando o valor total
-            $calculo_valor_total += $produto_data->price * $produto['quantity'];
-        }
-
-        // Criando o pedido
-        $order = Order::create([
-            'total_value' => $calculo_valor_total,
-            'user_id' => Auth::user()->id,
-        ]);
-
-        // Associando os produtos ao pedido
-        foreach ($request->products as $produto) {
-            $produto_data = Product::find($produto['id']);
-
-            if (!$produto_data) {
-                return response()->json([
-                    'error' => 'Produto não encontrado.',
-                ], 404);
-            }
-
-            // Associando os produtos ao pedido com quantidade e valor unitário
-            $order->products()->attach($produto['id'], [
-                'quantity' => $produto['quantity'],
-                'value_unitary' => $produto_data->price,
-                'order_id' => $order->id,
-                'product_id' => $produto['id'],
+            // 1. Criando o pedido no seu sistema
+            $order = Order::create([
+                'total_value' => $calculo_valor_total,
+                'user_id' => $user->id,
+                'status' => 'awaiting_payment' // Dica: Adicione um status ao pedido!
             ]);
-        }
 
-        // Retornando sucesso com o id do pedido
-        return response()->json([
-            'success' => 'Pedido realizado com sucesso',
-            'id_pedido' => $order->id,  // Enviando o id do pedido criado
-        ]);
+            // 2. Associando os produtos ao pedido (pivot table)
+            foreach ($request->products as $produto) {
+                $produto_data = Product::find($produto['id']);
+                $order->products()->attach($produto['id'], [
+                    'quantity' => $produto['quantity'],
+                    'value_unitary' => $produto_data->price,
+                    // Não precisa mais de 'order_id' e 'product_id', o attach já cuida disso
+                ]);
+            }
+
+            // 3. Montando os dados para o serviço do Mercado Pago
+            $dados_pagamento = [
+                'items' => $mp_items,
+                'payer' => [
+                    'name' => $user->name, // Supondo que seu user tenha 'name'
+                    'email' => $user->email,
+                ],
+                'external_reference' => $order->id, // ISSO É MUITO IMPORTANTE!
+            ];
+
+            // 4. Chamando o serviço para criar a preferência de pagamento
+            // Aqui eu estou usando a variável injetada no construtor
+            $init_point = $mercadoPagoService->createOrder($dados_pagamento);
+
+            // Dica: Salve o ID da preferência do MP no seu pedido pra referência futura
+            // $order->mercado_pago_preference_id = $init_point['id']; // O service precisa retornar o array completo
+            // $order->save();
+
+            // Se tudo deu certo até aqui, confirma a transação
+            DB::commit();
+
+            // 5. Retornando o link de pagamento
+            return response()->json([
+                'success' => 'Pedido realizado com sucesso, aguardando pagamento.',
+                'id_pedido' => $order->id,
+                'payment_url' => $init_point, // O seu serviço já retorna o init_point direto
+            ]);
+        } catch (\Exception $e) {
+            // Se qualquer coisa deu errado, desfaz tudo que foi feito no banco
+            DB::rollBack();
+
+            // Retorna uma resposta de erro genérica pro usuário
+            return response()->json([
+                'error' => 'Ocorreu um erro ao processar seu pedido. Tente novamente mais tarde.',
+                'details' => $e->getMessage() // Opcional, bom para o dev no frontend
+            ], 500);
+        }
     }
 
     /**
