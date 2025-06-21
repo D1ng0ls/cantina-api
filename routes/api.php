@@ -40,4 +40,4 @@ Route::prefix('cantina')->group(function () {
     });
 });
 
-Route::post('/mp/webhook', [MessageController::class, 'webhook'])->name('mp.webhook');
+Route::post('/mp/webhook', [MessageController::class, 'handle'])->name('mp.webhook');
