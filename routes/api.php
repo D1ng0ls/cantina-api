@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\OpeningHourController;
 use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\Webhook\MercadoPago\MessageController;
+use App\Http\Controllers\Api\WebHook\MercadoPago\MessageController;
 
 Route::prefix('cantina')->group(function () {
     Route::middleware('guest')->group(function () {
