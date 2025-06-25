@@ -11,6 +11,8 @@ class MessageController extends Controller
 {
     public function handle(Request $request)
     {
+        \Log::info($request->all());
+
         $signature = $request->header('x-signature');
 
         if (!$signature || !str_contains($signature, '=')) {
