@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\WebHook\MercadoPago;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Services\MercadoPagoService;
 use App\Http\Controllers\Controller;
@@ -44,7 +43,7 @@ class MessageController extends Controller
         $secret = config('services.mercadopago.webhook_secret');
 
         if (!$secret) {
-            Log::error('MERCADOPAGO_WEBHOOK_SECRET não está configurada!');
+            \Log::error('MERCADOPAGO_WEBHOOK_SECRET não está configurada!');
             return response()->json(['error' => 'Server configuration error'], 500);
         }
 
@@ -55,7 +54,7 @@ class MessageController extends Controller
         $calculatedHash = hash_hmac('sha256', $manifest, $secret);
 
         if (!hash_equals($calculatedHash, $hash)) {
-            Log::warning('Falha na validação do Webhook do MP', [
+            \Log::warning('Falha na validação do Webhook do MP', [
                 'manifest_esperado' => $manifest,
                 'hash_calculado' => $calculatedHash,
                 'hash_recebido' => $hash,
@@ -65,7 +64,7 @@ class MessageController extends Controller
             return response()->json(['error' => 'Invalid signature'], 401);
         }
 
-        Log::info('Webhook MP recebido e validado com sucesso!', $request->all());
+        \Log::info('Webhook MP recebido e validado com sucesso!', $request->all());
 
         // --- A MÁGICA ACONTECE AQUI! ---
     
@@ -83,18 +82,18 @@ class MessageController extends Controller
     
         // NOVO! Agora a gente decide o que fazer com base na resposta.
         if ($paymentInfo && $paymentInfo['status'] === 'approved') {
-            Log::info("Pagamento {$paymentId} APROVADO! Iniciando atualização no banco.");
+            \Log::info("Pagamento {$paymentId} APROVADO! Iniciando atualização no banco.");
         } else if ($paymentInfo) {
             // Se o status for outro (rejected, pending, etc), a gente só registra.
-            Log::warning("Pagamento {$paymentId} com status: {$paymentInfo['status']}. Nenhuma ação necessária.");
+            \Log::warning("Pagamento {$paymentId} com status: {$paymentInfo['status']}. Nenhuma ação necessária.");
         } else {
-            // Se o paymentInfo veio nulo, nosso serviço já logou o erro.
-            Log::error("Não foi possível obter informações para o pagamento {$paymentId}.");
+            // Se o paymentInfo veio nulo, nosso serviço já \logou o erro.
+            \Log::error("Não foi possível obter informações para o pagamento {$paymentId}.");
         }
            
 
         $payload = $request->all();
-        Log::info('Webhook MP recebido e validado com sucesso!', $payload);
+        \Log::info('Webhook MP recebido e validado com sucesso!', $payload);
 
         return response()->json(['success' => true], 200);
     }
