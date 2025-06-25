@@ -36,7 +36,7 @@ class MessageController extends Controller
         $secret = config('services.mercadopago.webhook_secret');
 
         if (!$secret) {
-            Log::error('MERCADOPAGO_WEBHOOK_SECRET não está configurada!');
+            \Log::error('MERCADOPAGO_WEBHOOK_SECRET não está configurada!');
             return response()->json(['error' => 'Server configuration error'], 500);
         }
 
@@ -51,7 +51,7 @@ class MessageController extends Controller
         $calculatedHash = hash_hmac('sha256', $manifest, $secret);
 
         if (!hash_equals($calculatedHash, $hash)) {
-            Log::warning('Falha na validação do Webhook do MP', [
+            \Log::warning('Falha na validação do Webhook do MP', [
                 'manifest_esperado' => $manifest,
                 'hash_calculado' => $calculatedHash,
                 'hash_recebido' => $hash,
@@ -62,7 +62,7 @@ class MessageController extends Controller
         }
 
         $payload = $request->all();
-        Log::info('Webhook MP recebido e validado com sucesso!', $payload);
+        \Log::info('Webhook MP recebido e validado com sucesso!', $payload);
 
         return response()->json(['success' => true], 200);
     }
