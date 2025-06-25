@@ -40,11 +40,7 @@ class MessageController extends Controller
             return response()->json(['error' => 'Server configuration error'], 500);
         }
 
-        $dataId = $request->query('data.id');
-
-        if (!$dataId) {
-            $dataId = $request->query('id');
-        }
+        $dataId = $request->input('data.id');
 
         $manifest = "id:{$dataId};request-id:{$requestId};ts:{$ts};";
 
