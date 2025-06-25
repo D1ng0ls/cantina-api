@@ -18,7 +18,7 @@ class MessageController extends Controller
         }
 
         list($algo, $hash) = explode('=', $signature);
-        $secret = env('MP_WEBHOOK_SECRET');
+        $secret = config('services.mercadopago.webhook_secret');
         $payload = $request->getContent();
         $calculatedHash = hash_hmac('sha256', $payload, $secret);
 
