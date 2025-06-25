@@ -24,7 +24,7 @@ class MercadoPagoService
             $response = $this->preferenceClient->create([
             'items' => $dados['items'],
             'payer' => $dados['payer'],
-            'notification_url' => 'https://cantina-api.test/api/v1/mercado-pago/webhook',
+            'notification_url' =>  $this->webhookUrl,
             'payment_methods' => [
                 'excluded_payment_types' => [
                     ['id' => 'ticket'],
@@ -48,5 +48,26 @@ class MercadoPagoService
     public function getPaymentStatus(string $paymentId)
     {
         return $this->paymentClient->get($paymentId);
+    }
+
+    public function checkPaymentStatus(string $paymentId): ?array
+    {
+        try {
+            $payment = $this->getPaymentStatus($paymentId);
+
+            return [
+                'status' => $payment->status,
+                'id' => $payment->id,
+                // 'full_response' => $payment 
+            ];
+
+        } catch (\Exception $e) {
+            \Log::error('Falha ao consultar status de pagamento no MercadoPago', [
+                'payment_id' => $paymentId,
+                'error' => $e->getMessage()
+            ]);
+
+            return null; 
+        }
     }
 }
