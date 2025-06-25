@@ -11,29 +11,62 @@ class MessageController extends Controller
 {
     public function handle(Request $request)
     {
-        \Log::info($request->all());
+        $signatureHeader = $request->header('x-signature');
+        $requestId = $request->header('x-request-id');
 
-        $signature = $request->header('x-signature');
-
-        if (!$signature || !str_contains($signature, '=')) {
-            return response()->json(['error' => 'Signature missing or invalid'], 400);
+        if (!$signatureHeader) {
+            return response()->json(['error' => 'Signature header missing'], 400);
         }
 
-        list($algo, $hash) = explode('=', $signature);
+        $ts = null;
+        $hash = null;
+        $parts = explode(',', $signatureHeader);
+        foreach ($parts as $part) {
+            list($key, $value) = explode('=', $part, 2);
+            if ($key === 'ts') {
+                $ts = $value;
+            } elseif ($key === 'v1') {
+                $hash = $value;
+            }
+        }
+
+        if (!$ts || !$hash) {
+            return response()->json(['error' => 'Invalid signature format'], 400);
+        }
         $secret = config('services.mercadopago.webhook_secret');
-        $payload = $request->getContent();
-        $calculatedHash = hash_hmac('sha256', $payload, $secret);
+
+        if (!$secret) {
+            Log::error('MERCADOPAGO_WEBHOOK_SECRET não está configurada!');
+            return response()->json(['error' => 'Server configuration error'], 500);
+        }
+
+        $dataId = $request->query('data.id');
+
+        if (!$dataId) {
+            $dataId = $request->query('id');
+        }
+
+        $manifest = "id:{$dataId};request-id:{$requestId};ts:{$ts};";
+
+        $calculatedHash = hash_hmac('sha256', $manifest, $secret);
 
         if (!hash_equals($calculatedHash, $hash)) {
+            Log::warning('Falha na validação do Webhook do MP', [
+                'manifest_esperado' => $manifest,
+                'hash_calculado' => $calculatedHash,
+                'hash_recebido' => $hash,
+                'request_id' => $requestId,
+            ]);
+
             return response()->json(['error' => 'Invalid signature'], 401);
         }
 
-        $data = json_decode($payload, true);
+        $payload = $request->all();
+        Log::info('Webhook MP recebido e validado com sucesso!', $payload);
 
-        \Log::info('Webhook MP recebido', $data);
-
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true], 200);
     }
+
 
     public function changeStatus(Request $request)
     {
