@@ -11,6 +11,7 @@ class MessageController extends Controller
 {
     public function handle(Request $request)
     {
+        Log::info('Webhook MP recebido!', $request->all());
         $signatureHeader = $request->header('x-signature');
         $requestId = $request->header('x-request-id');
 
