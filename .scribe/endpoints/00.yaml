@@ -196,7 +196,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Envia um código de redefinição de senha para o e-mail do usuário.'
+      title: 'Redefinir de senha do usuário.'
       description: ''
       authenticated: false
       custom: []
@@ -246,7 +246,7 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Reseta a senha do usuário usando o código de verificação.'
+      title: 'Resetar senha do usuário.'
       description: ''
       authenticated: false
       custom: []

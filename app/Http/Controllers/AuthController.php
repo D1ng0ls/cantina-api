@@ -134,7 +134,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Envia um código de redefinição de senha para o e-mail do usuário.
+     * Redefinir de senha do usuário.
      *
      * @group 1. Autenticação
      *
@@ -176,7 +176,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Reseta a senha do usuário usando o código de verificação.
+     * Resetar senha do usuário.
      *
      * @group 1. Autenticação
      *

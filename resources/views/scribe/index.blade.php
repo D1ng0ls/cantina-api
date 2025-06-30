@@ -78,10 +78,10 @@
                                 <a href="#1-autenticacao-POSTapi-cantina-login">Login do usuário.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="1-autenticacao-POSTapi-cantina-forgot-password">
-                                <a href="#1-autenticacao-POSTapi-cantina-forgot-password">Envia um código de redefinição de senha para o e-mail do usuário.</a>
+                                <a href="#1-autenticacao-POSTapi-cantina-forgot-password">Redefinir de senha do usuário.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="1-autenticacao-POSTapi-cantina-reset-password">
-                                <a href="#1-autenticacao-POSTapi-cantina-reset-password">Reseta a senha do usuário usando o código de verificação.</a>
+                                <a href="#1-autenticacao-POSTapi-cantina-reset-password">Resetar senha do usuário.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="1-autenticacao-POSTapi-cantina-logout">
                                 <a href="#1-autenticacao-POSTapi-cantina-logout">Logout do usuário autenticado.</a>
@@ -610,7 +610,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="1-autenticacao-POSTapi-cantina-forgot-password">Envia um código de redefinição de senha para o e-mail do usuário.</h2>
+                    <h2 id="1-autenticacao-POSTapi-cantina-forgot-password">Redefinir de senha do usuário.</h2>
 
 <p>
 </p>
@@ -748,7 +748,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="1-autenticacao-POSTapi-cantina-reset-password">Reseta a senha do usuário usando o código de verificação.</h2>
+                    <h2 id="1-autenticacao-POSTapi-cantina-reset-password">Resetar senha do usuário.</h2>
 
 <p>
 </p>
@@ -2499,7 +2499,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "price=4326.41688"\
     --form "quantity=16"\
     --form "category_id=16"\
-    --form "image=@C:\Users\daffa\AppData\Local\Temp\php2F00.tmp" </code></pre></div>
+    --form "image=@C:\Users\daffa\AppData\Local\Temp\php2AA1.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2652,7 +2652,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>nullable Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\php2F00.tmp</code></p>
+<p>nullable Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\php2AA1.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
