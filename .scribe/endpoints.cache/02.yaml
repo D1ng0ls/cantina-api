@@ -6,182 +6,6 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/cantina/products/inactives
-    metadata:
-      groupName: '4. Produtos'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Listar produtos inativos com suas categorias (paginado 50 por vez).'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {token} O token de autenticação JWT'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-            "current_page": 1,
-            "data": [
-              {
-                "id": 1,
-                "name": "Produto X",
-                "category": {
-                  "id": 3,
-                  "name": "Categoria Y"
-                }
-              },
-              ...
-            ],
-            ...
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/cantina/products/remove-image/{product_id}'
-    metadata:
-      groupName: '4. Produtos'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Remover imagem do produto.'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {token} O token de autenticação JWT'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      product_id:
-        name: product_id
-        description: 'The ID of the product.'
-        required: true
-        example: 2
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      product:
-        name: product
-        description: 'ID do produto.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      product_id: 2
-      product: 16
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-            "message": "Imagem removida com sucesso"
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: 'api/cantina/products/active/{product_id}'
-    metadata:
-      groupName: '4. Produtos'
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Ativar/desativar produto.'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Authorization: 'Bearer {token} O token de autenticação JWT'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      product_id:
-        name: product_id
-        description: 'The ID of the product.'
-        required: true
-        example: 2
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      product:
-        name: product
-        description: 'ID do produto.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      product_id: 2
-      product: 16
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-            "message": "Produto ativado/desativado com sucesso"
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
     uri: api/cantina/products
     metadata:
       groupName: '4. Produtos'
@@ -499,16 +323,6 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
-      active:
-        name: active
-        description: ''
-        required: true
-        example: true
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
       category_id:
         name: category_id
         description: 'ID da categoria.'
@@ -525,7 +339,6 @@ endpoints:
       image: architecto
       price: 4326.41688
       quantity: 16
-      active: true
       category_id: 16
     fileParameters: []
     responses:
@@ -596,6 +409,182 @@ endpoints:
         content: |-
           {
             "message": "Produto excluído com sucesso"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/cantina/products/inactives
+    metadata:
+      groupName: '4. Produtos'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Listar produtos inativos com suas categorias (paginado 50 por vez).'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "current_page": 1,
+            "data": [
+              {
+                "id": 1,
+                "name": "Produto X",
+                "category": {
+                  "id": 3,
+                  "name": "Categoria Y"
+                }
+              },
+              ...
+            ],
+            ...
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/cantina/products/remove-image/{product_id}'
+    metadata:
+      groupName: '4. Produtos'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remover imagem do produto.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      product:
+        name: product
+        description: 'ID do produto.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      product_id: 2
+      product: 16
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Imagem removida com sucesso"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/cantina/products/active/{product_id}'
+    metadata:
+      groupName: '4. Produtos'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Ativar/desativar produto.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      product_id:
+        name: product_id
+        description: 'The ID of the product.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      product:
+        name: product
+        description: 'ID do produto.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      product_id: 2
+      product: 16
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Produto ativado/desativado com sucesso"
           }
         headers: []
         description: ''

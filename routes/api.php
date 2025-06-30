@@ -26,14 +26,15 @@ Route::prefix('cantina')->group(function () {
             Route::post('/change-password', [UserController::class, 'changePassword']);
         });
 
+        Route::apiResource('products', ProductController::class);
         Route::get('/products/inactives', [ProductController::class, 'indexInactive'])->name('products.indexInactive');
         Route::delete('/products/remove-image/{product}', [ProductController::class, 'removeImage'])->name('products.removeImage');
         Route::post('/products/active/{product}', [ProductController::class, 'toggleActive'])->name('products.toggleActive');
 
-        // ROTA GERAL (RESOURCE) DEPOIS
-        Route::apiResource('products', ProductController::class);
         Route::apiResource('categories', CategoryController::class);
+
         Route::apiResource('orders', OrderController::class);
+        Route::get('/orders/user', [OrderController::class, 'showByUser'])->name('orders.showByUser');
 
         Route::apiResource('opening-hours', OpeningHourController::class)->parameters([
             'opening-hours' => 'openingHour'

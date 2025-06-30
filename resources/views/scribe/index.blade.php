@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://localhost";
+        var tryItOutBaseUrl = "https://cantinaapi.dingols.com.br/";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -125,16 +125,7 @@
                     <a href="#4-produtos">4. Produtos</a>
                 </li>
                                     <ul id="tocify-subheader-4-produtos" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="4-produtos-GETapi-cantina-products-inactives">
-                                <a href="#4-produtos-GETapi-cantina-products-inactives">Listar produtos inativos com suas categorias (paginado 50 por vez).</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="4-produtos-DELETEapi-cantina-products-remove-image--product_id-">
-                                <a href="#4-produtos-DELETEapi-cantina-products-remove-image--product_id-">Remover imagem do produto.</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="4-produtos-POSTapi-cantina-products-active--product_id-">
-                                <a href="#4-produtos-POSTapi-cantina-products-active--product_id-">Ativar/desativar produto.</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="4-produtos-GETapi-cantina-products">
+                                                    <li class="tocify-item level-2" data-unique="4-produtos-GETapi-cantina-products">
                                 <a href="#4-produtos-GETapi-cantina-products">Listar produtos ativos com suas categorias (paginado 50 por vez).</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="4-produtos-POSTapi-cantina-products">
@@ -148,6 +139,15 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="4-produtos-DELETEapi-cantina-products--id-">
                                 <a href="#4-produtos-DELETEapi-cantina-products--id-">Excluir produto.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="4-produtos-GETapi-cantina-products-inactives">
+                                <a href="#4-produtos-GETapi-cantina-products-inactives">Listar produtos inativos com suas categorias (paginado 50 por vez).</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="4-produtos-DELETEapi-cantina-products-remove-image--product_id-">
+                                <a href="#4-produtos-DELETEapi-cantina-products-remove-image--product_id-">Remover imagem do produto.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="4-produtos-POSTapi-cantina-products-active--product_id-">
+                                <a href="#4-produtos-POSTapi-cantina-products-active--product_id-">Ativar/desativar produto.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -170,6 +170,9 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="5-pedidos-DELETEapi-cantina-orders--id-">
                                 <a href="#5-pedidos-DELETEapi-cantina-orders--id-">Deletar um pedido.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="5-pedidos-GETapi-cantina-orders-user">
+                                <a href="#5-pedidos-GETapi-cantina-orders-user">Mostrar pedidos por usuário.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -204,7 +207,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 18, 2025</li>
+        <li>Last updated: June 29, 2025</li>
     </ul>
 </div>
 
@@ -213,7 +216,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://localhost</code>
+    <strong>Base URL</strong>: <code>https://cantinaapi.dingols.com.br/</code>
 </aside>
 <pre><code>This documentation aims to provide all the information you need to work with our API.
 
@@ -240,7 +243,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/cantina/register" \
+    "https://cantinaapi.dingols.com.br/api/cantina/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -256,7 +259,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/register"
+    "https://cantinaapi.dingols.com.br/api/cantina/register"
 );
 
 const headers = {
@@ -453,7 +456,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/cantina/login" \
+    "https://cantinaapi.dingols.com.br/api/cantina/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -465,7 +468,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/login"
+    "https://cantinaapi.dingols.com.br/api/cantina/login"
 );
 
 const headers = {
@@ -615,7 +618,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/cantina/logout" \
+    "https://cantinaapi.dingols.com.br/api/cantina/logout" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -623,7 +626,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/logout"
+    "https://cantinaapi.dingols.com.br/api/cantina/logout"
 );
 
 const headers = {
@@ -750,7 +753,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/profile" \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/profile" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -758,7 +761,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/profile"
+    "https://cantinaapi.dingols.com.br/api/cantina/profile"
 );
 
 const headers = {
@@ -883,7 +886,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/cantina/profile" \
+    "https://cantinaapi.dingols.com.br/api/cantina/profile" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -896,7 +899,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/profile"
+    "https://cantinaapi.dingols.com.br/api/cantina/profile"
 );
 
 const headers = {
@@ -1048,7 +1051,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/cantina/profile/change-password" \
+    "https://cantinaapi.dingols.com.br/api/cantina/profile/change-password" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1061,7 +1064,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/profile/change-password"
+    "https://cantinaapi.dingols.com.br/api/cantina/profile/change-password"
 );
 
 const headers = {
@@ -1217,7 +1220,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/categories" \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/categories" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1225,7 +1228,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/categories"
+    "https://cantinaapi.dingols.com.br/api/cantina/categories"
 );
 
 const headers = {
@@ -1362,7 +1365,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/cantina/categories" \
+    "https://cantinaapi.dingols.com.br/api/cantina/categories" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1374,7 +1377,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/categories"
+    "https://cantinaapi.dingols.com.br/api/cantina/categories"
 );
 
 const headers = {
@@ -1514,7 +1517,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/categories/2" \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/categories/2" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1522,7 +1525,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/categories/2"
+    "https://cantinaapi.dingols.com.br/api/cantina/categories/2"
 );
 
 const headers = {
@@ -1677,7 +1680,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/cantina/categories/2" \
+    "https://cantinaapi.dingols.com.br/api/cantina/categories/2" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1689,7 +1692,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/categories/2"
+    "https://cantinaapi.dingols.com.br/api/cantina/categories/2"
 );
 
 const headers = {
@@ -1856,7 +1859,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/cantina/categories/2" \
+    "https://cantinaapi.dingols.com.br/api/cantina/categories/2" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1864,7 +1867,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/categories/2"
+    "https://cantinaapi.dingols.com.br/api/cantina/categories/2"
 );
 
 const headers = {
@@ -2000,458 +2003,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="4-produtos-GETapi-cantina-products-inactives">Listar produtos inativos com suas categorias (paginado 50 por vez).</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-cantina-products-inactives">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/products/inactives" \
-    --header "Authorization: Bearer {token} O token de autenticação JWT" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/products/inactives"
-);
-
-const headers = {
-    "Authorization": "Bearer {token} O token de autenticação JWT",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-cantina-products-inactives">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-  &quot;current_page&quot;: 1,
-  &quot;data&quot;: [
-    {
-      &quot;id&quot;: 1,
-      &quot;name&quot;: &quot;Produto X&quot;,
-      &quot;category&quot;: {
-        &quot;id&quot;: 3,
-        &quot;name&quot;: &quot;Categoria Y&quot;
-      }
-    },
-    ...
-  ],
-  ...
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-cantina-products-inactives" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-cantina-products-inactives"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-cantina-products-inactives"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-cantina-products-inactives" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-cantina-products-inactives">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-cantina-products-inactives" data-method="GET"
-      data-path="api/cantina/products/inactives"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-cantina-products-inactives', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-cantina-products-inactives"
-                    onclick="tryItOut('GETapi-cantina-products-inactives');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-cantina-products-inactives"
-                    onclick="cancelTryOut('GETapi-cantina-products-inactives');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-cantina-products-inactives"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/cantina/products/inactives</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-cantina-products-inactives"
-               value="Bearer {token} O token de autenticação JWT"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {token} O token de autenticação JWT</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-cantina-products-inactives"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-cantina-products-inactives"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="4-produtos-DELETEapi-cantina-products-remove-image--product_id-">Remover imagem do produto.</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-DELETEapi-cantina-products-remove-image--product_id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/cantina/products/remove-image/2" \
-    --header "Authorization: Bearer {token} O token de autenticação JWT" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/products/remove-image/2"
-);
-
-const headers = {
-    "Authorization": "Bearer {token} O token de autenticação JWT",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "DELETE",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-DELETEapi-cantina-products-remove-image--product_id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Imagem removida com sucesso&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-DELETEapi-cantina-products-remove-image--product_id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-DELETEapi-cantina-products-remove-image--product_id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-cantina-products-remove-image--product_id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-DELETEapi-cantina-products-remove-image--product_id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-cantina-products-remove-image--product_id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-DELETEapi-cantina-products-remove-image--product_id-" data-method="DELETE"
-      data-path="api/cantina/products/remove-image/{product_id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-cantina-products-remove-image--product_id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-cantina-products-remove-image--product_id-"
-                    onclick="tryItOut('DELETEapi-cantina-products-remove-image--product_id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-cantina-products-remove-image--product_id-"
-                    onclick="cancelTryOut('DELETEapi-cantina-products-remove-image--product_id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-cantina-products-remove-image--product_id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-red">DELETE</small>
-            <b><code>api/cantina/products/remove-image/{product_id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-cantina-products-remove-image--product_id-"
-               value="Bearer {token} O token de autenticação JWT"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {token} O token de autenticação JWT</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="DELETEapi-cantina-products-remove-image--product_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="DELETEapi-cantina-products-remove-image--product_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>product_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="product_id"                data-endpoint="DELETEapi-cantina-products-remove-image--product_id-"
-               value="2"
-               data-component="url">
-    <br>
-<p>The ID of the product. Example: <code>2</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>product</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="product"                data-endpoint="DELETEapi-cantina-products-remove-image--product_id-"
-               value="16"
-               data-component="url">
-    <br>
-<p>ID do produto. Example: <code>16</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="4-produtos-POSTapi-cantina-products-active--product_id-">Ativar/desativar produto.</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-cantina-products-active--product_id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/cantina/products/active/2" \
-    --header "Authorization: Bearer {token} O token de autenticação JWT" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/products/active/2"
-);
-
-const headers = {
-    "Authorization": "Bearer {token} O token de autenticação JWT",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-cantina-products-active--product_id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Produto ativado/desativado com sucesso&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-cantina-products-active--product_id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-cantina-products-active--product_id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-cantina-products-active--product_id-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-cantina-products-active--product_id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-cantina-products-active--product_id-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-cantina-products-active--product_id-" data-method="POST"
-      data-path="api/cantina/products/active/{product_id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-cantina-products-active--product_id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-cantina-products-active--product_id-"
-                    onclick="tryItOut('POSTapi-cantina-products-active--product_id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-cantina-products-active--product_id-"
-                    onclick="cancelTryOut('POSTapi-cantina-products-active--product_id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-cantina-products-active--product_id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/cantina/products/active/{product_id}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-cantina-products-active--product_id-"
-               value="Bearer {token} O token de autenticação JWT"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {token} O token de autenticação JWT</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-cantina-products-active--product_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-cantina-products-active--product_id-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>product_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="product_id"                data-endpoint="POSTapi-cantina-products-active--product_id-"
-               value="2"
-               data-component="url">
-    <br>
-<p>The ID of the product. Example: <code>2</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>product</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="product"                data-endpoint="POSTapi-cantina-products-active--product_id-"
-               value="16"
-               data-component="url">
-    <br>
-<p>ID do produto. Example: <code>16</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="4-produtos-GETapi-cantina-products">Listar produtos ativos com suas categorias (paginado 50 por vez).</h2>
+                                <h2 id="4-produtos-GETapi-cantina-products">Listar produtos ativos com suas categorias (paginado 50 por vez).</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2465,7 +2017,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/products" \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/products" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2473,7 +2025,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/products"
+    "https://cantinaapi.dingols.com.br/api/cantina/products"
 );
 
 const headers = {
@@ -2608,7 +2160,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/cantina/products" \
+    "https://cantinaapi.dingols.com.br/api/cantina/products" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
@@ -2617,12 +2169,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "price=4326.41688"\
     --form "quantity=16"\
     --form "category_id=16"\
-    --form "image=@C:\Users\daffa\AppData\Local\Temp\phpB6C6.tmp" </code></pre></div>
+    --form "image=@C:\Users\daffa\AppData\Local\Temp\php251D.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/products"
+    "https://cantinaapi.dingols.com.br/api/cantina/products"
 );
 
 const headers = {
@@ -2770,7 +2322,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>nullable Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\phpB6C6.tmp</code></p>
+<p>nullable Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\php251D.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
@@ -2821,7 +2373,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/products/2" \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/products/2" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2829,7 +2381,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/products/2"
+    "https://cantinaapi.dingols.com.br/api/cantina/products/2"
 );
 
 const headers = {
@@ -2980,7 +2532,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/cantina/products/2" \
+    "https://cantinaapi.dingols.com.br/api/cantina/products/2" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2990,7 +2542,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"image\": \"architecto\",
     \"price\": 4326.41688,
     \"quantity\": 16,
-    \"active\": true,
     \"category_id\": 16
 }"
 </code></pre></div>
@@ -2998,7 +2549,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/products/2"
+    "https://cantinaapi.dingols.com.br/api/cantina/products/2"
 );
 
 const headers = {
@@ -3013,7 +2564,6 @@ let body = {
     "image": "architecto",
     "price": 4326.41688,
     "quantity": 16,
-    "active": true,
     "category_id": 16
 };
 
@@ -3200,27 +2750,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Quantidade disponível. Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>active</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
- &nbsp;
-                <label data-endpoint="PUTapi-cantina-products--id-" style="display: none">
-            <input type="radio" name="active"
-                   value="true"
-                   data-endpoint="PUTapi-cantina-products--id-"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="PUTapi-cantina-products--id-" style="display: none">
-            <input type="radio" name="active"
-                   value="false"
-                   data-endpoint="PUTapi-cantina-products--id-"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>Example: <code>true</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
  &nbsp;
@@ -3247,7 +2776,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/cantina/products/2" \
+    "https://cantinaapi.dingols.com.br/api/cantina/products/2" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3255,7 +2784,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/products/2"
+    "https://cantinaapi.dingols.com.br/api/cantina/products/2"
 );
 
 const headers = {
@@ -3387,6 +2916,457 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="4-produtos-GETapi-cantina-products-inactives">Listar produtos inativos com suas categorias (paginado 50 por vez).</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-cantina-products-inactives">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/products/inactives" \
+    --header "Authorization: Bearer {token} O token de autenticação JWT" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cantinaapi.dingols.com.br/api/cantina/products/inactives"
+);
+
+const headers = {
+    "Authorization": "Bearer {token} O token de autenticação JWT",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-cantina-products-inactives">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+  &quot;current_page&quot;: 1,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;name&quot;: &quot;Produto X&quot;,
+      &quot;category&quot;: {
+        &quot;id&quot;: 3,
+        &quot;name&quot;: &quot;Categoria Y&quot;
+      }
+    },
+    ...
+  ],
+  ...
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-cantina-products-inactives" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cantina-products-inactives"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cantina-products-inactives"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-cantina-products-inactives" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cantina-products-inactives">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-cantina-products-inactives" data-method="GET"
+      data-path="api/cantina/products/inactives"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cantina-products-inactives', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cantina-products-inactives"
+                    onclick="tryItOut('GETapi-cantina-products-inactives');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cantina-products-inactives"
+                    onclick="cancelTryOut('GETapi-cantina-products-inactives');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cantina-products-inactives"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cantina/products/inactives</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-cantina-products-inactives"
+               value="Bearer {token} O token de autenticação JWT"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {token} O token de autenticação JWT</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-cantina-products-inactives"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-cantina-products-inactives"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="4-produtos-DELETEapi-cantina-products-remove-image--product_id-">Remover imagem do produto.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-cantina-products-remove-image--product_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "https://cantinaapi.dingols.com.br/api/cantina/products/remove-image/2" \
+    --header "Authorization: Bearer {token} O token de autenticação JWT" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cantinaapi.dingols.com.br/api/cantina/products/remove-image/2"
+);
+
+const headers = {
+    "Authorization": "Bearer {token} O token de autenticação JWT",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-cantina-products-remove-image--product_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Imagem removida com sucesso&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-cantina-products-remove-image--product_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-cantina-products-remove-image--product_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-cantina-products-remove-image--product_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-cantina-products-remove-image--product_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-cantina-products-remove-image--product_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-cantina-products-remove-image--product_id-" data-method="DELETE"
+      data-path="api/cantina/products/remove-image/{product_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-cantina-products-remove-image--product_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-cantina-products-remove-image--product_id-"
+                    onclick="tryItOut('DELETEapi-cantina-products-remove-image--product_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-cantina-products-remove-image--product_id-"
+                    onclick="cancelTryOut('DELETEapi-cantina-products-remove-image--product_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-cantina-products-remove-image--product_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/cantina/products/remove-image/{product_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-cantina-products-remove-image--product_id-"
+               value="Bearer {token} O token de autenticação JWT"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {token} O token de autenticação JWT</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-cantina-products-remove-image--product_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-cantina-products-remove-image--product_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>product_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="product_id"                data-endpoint="DELETEapi-cantina-products-remove-image--product_id-"
+               value="2"
+               data-component="url">
+    <br>
+<p>The ID of the product. Example: <code>2</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>product</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="product"                data-endpoint="DELETEapi-cantina-products-remove-image--product_id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>ID do produto. Example: <code>16</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="4-produtos-POSTapi-cantina-products-active--product_id-">Ativar/desativar produto.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-cantina-products-active--product_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://cantinaapi.dingols.com.br/api/cantina/products/active/2" \
+    --header "Authorization: Bearer {token} O token de autenticação JWT" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cantinaapi.dingols.com.br/api/cantina/products/active/2"
+);
+
+const headers = {
+    "Authorization": "Bearer {token} O token de autenticação JWT",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-cantina-products-active--product_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Produto ativado/desativado com sucesso&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-cantina-products-active--product_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-cantina-products-active--product_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-cantina-products-active--product_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-cantina-products-active--product_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-cantina-products-active--product_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-cantina-products-active--product_id-" data-method="POST"
+      data-path="api/cantina/products/active/{product_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-cantina-products-active--product_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-cantina-products-active--product_id-"
+                    onclick="tryItOut('POSTapi-cantina-products-active--product_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-cantina-products-active--product_id-"
+                    onclick="cancelTryOut('POSTapi-cantina-products-active--product_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-cantina-products-active--product_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/cantina/products/active/{product_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-cantina-products-active--product_id-"
+               value="Bearer {token} O token de autenticação JWT"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {token} O token de autenticação JWT</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-cantina-products-active--product_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-cantina-products-active--product_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>product_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="product_id"                data-endpoint="POSTapi-cantina-products-active--product_id-"
+               value="2"
+               data-component="url">
+    <br>
+<p>The ID of the product. Example: <code>2</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>product</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="product"                data-endpoint="POSTapi-cantina-products-active--product_id-"
+               value="16"
+               data-component="url">
+    <br>
+<p>ID do produto. Example: <code>16</code></p>
+            </div>
+                    </form>
+
                 <h1 id="5-pedidos">5. Pedidos</h1>
 
     
@@ -3405,7 +3385,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/orders" \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/orders" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3413,7 +3393,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/orders"
+    "https://cantinaapi.dingols.com.br/api/cantina/orders"
 );
 
 const headers = {
@@ -3564,7 +3544,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/cantina/orders" \
+    "https://cantinaapi.dingols.com.br/api/cantina/orders" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3584,7 +3564,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/orders"
+    "https://cantinaapi.dingols.com.br/api/cantina/orders"
 );
 
 const headers = {
@@ -3797,7 +3777,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/orders/1" \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/orders/1" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3805,7 +3785,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/orders/1"
+    "https://cantinaapi.dingols.com.br/api/cantina/orders/1"
 );
 
 const headers = {
@@ -3972,7 +3952,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/cantina/orders/1" \
+    "https://cantinaapi.dingols.com.br/api/cantina/orders/1" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3984,7 +3964,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/orders/1"
+    "https://cantinaapi.dingols.com.br/api/cantina/orders/1"
 );
 
 const headers = {
@@ -4151,7 +4131,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/cantina/orders/1" \
+    "https://cantinaapi.dingols.com.br/api/cantina/orders/1" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4159,7 +4139,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/orders/1"
+    "https://cantinaapi.dingols.com.br/api/cantina/orders/1"
 );
 
 const headers = {
@@ -4291,6 +4271,162 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="5-pedidos-GETapi-cantina-orders-user">Mostrar pedidos por usuário.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-cantina-orders-user">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/orders/user" \
+    --header "Authorization: Bearer {token} O token de autenticação JWT" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cantinaapi.dingols.com.br/api/cantina/orders/user"
+);
+
+const headers = {
+    "Authorization": "Bearer {token} O token de autenticação JWT",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-cantina-orders-user">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;valor_total&quot;: 100,
+      &quot;status&quot;: &quot;aberto&quot;,
+      &quot;usuario&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;John Doe&quot;
+      },
+      &quot;pagamento&quot;: [
+        {
+          &quot;id&quot;: 1,
+          &quot;status&quot;: &quot;aprovado&quot;
+        }
+      ],
+      &quot;produtos&quot;: [
+        {
+          &quot;id&quot;: 1,
+          &quot;nome&quot;: &quot;Produto X&quot;,
+          &quot;quantidade&quot;: 1,
+          &quot;valor_unitario&quot;: 100
+        },
+        ...
+      ]
+    }
+  ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-cantina-orders-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cantina-orders-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cantina-orders-user"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-cantina-orders-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cantina-orders-user">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-cantina-orders-user" data-method="GET"
+      data-path="api/cantina/orders/user"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cantina-orders-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cantina-orders-user"
+                    onclick="tryItOut('GETapi-cantina-orders-user');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cantina-orders-user"
+                    onclick="cancelTryOut('GETapi-cantina-orders-user');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cantina-orders-user"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cantina/orders/user</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-cantina-orders-user"
+               value="Bearer {token} O token de autenticação JWT"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {token} O token de autenticação JWT</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-cantina-orders-user"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-cantina-orders-user"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
                 <h1 id="6-horarios">6. Horários</h1>
 
     
@@ -4309,7 +4445,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/opening-hours" \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/opening-hours" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4317,7 +4453,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/opening-hours"
+    "https://cantinaapi.dingols.com.br/api/cantina/opening-hours"
 );
 
 const headers = {
@@ -4447,7 +4583,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/cantina/opening-hours" \
+    "https://cantinaapi.dingols.com.br/api/cantina/opening-hours" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4461,7 +4597,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/opening-hours"
+    "https://cantinaapi.dingols.com.br/api/cantina/opening-hours"
 );
 
 const headers = {
@@ -4625,7 +4761,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/cantina/opening-hours/2" \
+    "https://cantinaapi.dingols.com.br/api/cantina/opening-hours/2" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4639,7 +4775,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/opening-hours/2"
+    "https://cantinaapi.dingols.com.br/api/cantina/opening-hours/2"
 );
 
 const headers = {
@@ -4830,7 +4966,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/cantina/opening-hours/2" \
+    "https://cantinaapi.dingols.com.br/api/cantina/opening-hours/2" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4838,7 +4974,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/opening-hours/2"
+    "https://cantinaapi.dingols.com.br/api/cantina/opening-hours/2"
 );
 
 const headers = {
@@ -4984,7 +5120,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/cantina/opening-hours/by-weekday/16" \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/opening-hours/by-weekday/16" \
     --header "Authorization: Bearer {token} O token de autenticação JWT" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4992,7 +5128,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/cantina/opening-hours/by-weekday/16"
+    "https://cantinaapi.dingols.com.br/api/cantina/opening-hours/by-weekday/16"
 );
 
 const headers = {

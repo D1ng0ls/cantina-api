@@ -71,6 +71,7 @@ class ProductController extends Controller
      * Cadastrar novo produto.
      * 
      * @authenticated
+     * @permission patron
      * @group 4. Produtos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
@@ -124,6 +125,7 @@ class ProductController extends Controller
      * Atualizar produto.
      * 
      * @authenticated
+     * @permission patron
      * @group 4. Produtos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
@@ -144,7 +146,7 @@ class ProductController extends Controller
     {
         $this->authorize('patron');
 
-        if (!$request->active) {
+        if (!$product->active) {
             return response()->json([
                 'message' => 'Produto não encontrado.',
             ], 404);
@@ -156,7 +158,6 @@ class ProductController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
             'price' => 'required|numeric',
             'quantity' => 'required|integer',
-            'active' => 'required|boolean',
             'category_id' => 'required|exists:categories,id',
         ]);
 
@@ -168,7 +169,7 @@ class ProductController extends Controller
             $path = $request->file('image')->move(public_path('upload/produtos'), $filename);
         }
 
-        $data = $request->only(['name', 'description', 'price', 'quantity', 'active', 'category_id']);
+        $data = $request->only(['name', 'description', 'price', 'quantity', 'category_id']);
         $data['imagem'] = $path ?? $product->image;
 
         $product->update($data);
@@ -182,6 +183,7 @@ class ProductController extends Controller
      * Remover imagem do produto.
      * 
      * @authenticated
+     * @permission patron
      * @group 4. Produtos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
@@ -218,6 +220,7 @@ class ProductController extends Controller
      * Ativar/desativar produto.
      * 
      * @authenticated
+     * @permission patron
      * @group 4. Produtos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
@@ -244,6 +247,7 @@ class ProductController extends Controller
      * Listar produtos inativos com suas categorias (paginado 50 por vez).
      * 
      * @authenticated
+     * @permission patron
      * @group 4. Produtos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
@@ -265,6 +269,8 @@ class ProductController extends Controller
      */
     public function indexInactive()
     {
+        $this->authorize('patron');
+
         return response()->json(
             Product::with('category')
                 ->where('active', false)
@@ -277,6 +283,7 @@ class ProductController extends Controller
      * Excluir produto.
      * 
      * @authenticated
+     * @permission patron
      * @group 4. Produtos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 

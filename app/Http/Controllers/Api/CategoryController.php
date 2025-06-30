@@ -76,6 +76,7 @@ class CategoryController extends ApiController
      * Cadastrar nova categoria.
      * 
      * @authenticated
+     * @permission patron
      * @group 3. Categorias
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
@@ -106,6 +107,7 @@ class CategoryController extends ApiController
      * Atualizar categoria.
      * 
      * @authenticated
+     * @permission patron
      * @group 3. Categorias
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
@@ -137,6 +139,7 @@ class CategoryController extends ApiController
      * Excluir categoria.
      * 
      * @authenticated
+     * @permission patron
      * @group 3. Categorias
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 

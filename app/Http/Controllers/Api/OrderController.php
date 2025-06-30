@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use App\Services\MercadoPagoService;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +16,7 @@ class OrderController extends ApiController
      * Listar pedidos (paginação de 10 em 10).
      * 
      * @authenticated
+     * @permission patron
      * @group 5. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
@@ -52,7 +54,9 @@ class OrderController extends ApiController
      */
     public function index()
     {
-        return response()->json(Order::with(['products', 'user', 'payment'])->paginate(10));
+        $this->authorize('patron');
+
+        return response()->json(Order::with(['products', 'user', 'payment'])->paginate(50));
     }
 
     /**
@@ -95,6 +99,47 @@ class OrderController extends ApiController
     }
 
     /**
+     * Mostrar pedidos por usuário.
+     * 
+     * @authenticated
+     * @group 5. Pedidos
+     * @header Authorization Bearer {token} O token de autenticação JWT
+     * 
+     * @response 200 {
+     *   "data": [
+     *     {
+     *       "id": 1,
+     *       "valor_total": 100,
+     *       "status": "aberto",
+     *       "usuario": {
+     *         "id": 1,
+     *         "name": "John Doe"
+     *       },
+     *       "pagamento": [
+     *         {
+     *           "id": 1,
+     *           "status": "aprovado"
+     *         }
+     *       ],
+     *       "produtos": [
+     *         {
+     *           "id": 1,
+     *           "nome": "Produto X",
+     *           "quantidade": 1,
+     *           "valor_unitario": 100
+     *         },
+     *         ...
+     *       ]
+     *     }
+     *   ]
+     * }
+     */
+    public function showByUser(Request $request)
+    {
+        return response()->json(auth()->user()->orders()->with(['products', 'payment']));
+    }
+
+    /**
      * Criar um novo pedido com produtos.
      * 
      * @authenticated
@@ -116,7 +161,6 @@ class OrderController extends ApiController
      */
     public function store(Request $request)
     {
-        // Validação de dados
         $request->validate([
             'products' => 'required|array',
             'products.*.id' => 'required|exists:products,id',
@@ -136,79 +180,70 @@ class OrderController extends ApiController
 
         try {
             $calculo_valor_total = 0;
-            $mp_items = []; // Array para os itens do Mercado Pago
+            $mp_items = [];
             $user = Auth::user();
 
-            // Loop único pra calcular o total e já montar os itens pro MP
             foreach ($request->products as $produto) {
                 $produto_data = Product::find($produto['id']);
-
-                // O if de produto não encontrado pode ser removido, pois a validação já faz isso.
-                // Mas se quiser manter por segurança extra, sem problemas.
 
                 $calculo_valor_total += $produto_data->price * $produto['quantity'];
 
-                // Adiciona o item no formato que a API do MP espera
                 $mp_items[] = [
-                    'title' => $produto_data->name, // Supondo que seu produto tenha um campo 'name'
+                    'title' => $produto_data->name,
                     'quantity' => (int) $produto['quantity'],
                     'unit_price' => (float) $produto_data->price,
-                    'currency_id' => 'BRL' // Moeda
+                    'currency_id' => 'BRL'
                 ];
             }
 
-            // 1. Criando o pedido no seu sistema
             $order = Order::create([
                 'total_value' => $calculo_valor_total,
                 'user_id' => $user->id,
-                'status' => 'awaiting_payment' // Dica: Adicione um status ao pedido!
+                'status' => 'awaiting_payment'
             ]);
 
-            // 2. Associando os produtos ao pedido (pivot table)
             foreach ($request->products as $produto) {
-                $produto_data = Product::find($produto['id']);
+                $produto_data = Product::where('id', $produto['id'])->lockForUpdate()->first();
                 $order->products()->attach($produto['id'], [
                     'quantity' => $produto['quantity'],
                     'value_unitary' => $produto_data->price,
-                    // Não precisa mais de 'order_id' e 'product_id', o attach já cuida disso
                 ]);
+
+                if (!$produto_data || $produto_data->quantity < $produto['quantity']) {
+                    throw new \Exception('Produto ' . ($produto_data->name ?? $produto['id']) . ' com quantidade insuficiente em estoque.');
+                }
+
+                $produto_data->quantity -= $produto['quantity'];
+                $produto_data->save();
             }
 
-            // 3. Montando os dados para o serviço do Mercado Pago
             $dados_pagamento = [
                 'items' => $mp_items,
                 'payer' => [
-                    'name' => $user->name, // Supondo que seu user tenha 'name'
+                    'name' => $user->name,
                     'email' => $user->email,
                 ],
-                'external_reference' => $order->id, // ISSO É MUITO IMPORTANTE!
+                'external_reference' => $order->id,
             ];
 
-            // 4. Chamando o serviço para criar a preferência de pagamento
-            // Aqui eu estou usando a variável injetada no construtor
             $init_point = $mercadoPagoService->createOrder($dados_pagamento);
 
-            // Dica: Salve o ID da preferência do MP no seu pedido pra referência futura
-            // $order->mercado_pago_preference_id = $init_point['id']; // O service precisa retornar o array completo
+            // $order->mercado_pago_preference_id = $init_point['id']
             // $order->save();
 
-            // Se tudo deu certo até aqui, confirma a transação
             DB::commit();
 
-            // 5. Retornando o link de pagamento
             return response()->json([
                 'success' => 'Pedido realizado com sucesso, aguardando pagamento.',
                 'id_pedido' => $order->id,
-                'payment_url' => $init_point, // O seu serviço já retorna o init_point direto
+                'payment_url' => $init_point,
             ]);
         } catch (\Exception $e) {
-            // Se qualquer coisa deu errado, desfaz tudo que foi feito no banco
             DB::rollBack();
 
-            // Retorna uma resposta de erro genérica pro usuário
             return response()->json([
                 'error' => 'Ocorreu um erro ao processar seu pedido. Tente novamente mais tarde.',
-                'details' => $e->getMessage() // Opcional, bom para o dev no frontend
+                'details' => $e->getMessage()
             ], 500);
         }
     }
@@ -217,6 +252,7 @@ class OrderController extends ApiController
      * Atualizar o status de um pedido.
      * 
      * @authenticated
+     * @permission patron
      * @group 5. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
@@ -251,6 +287,7 @@ class OrderController extends ApiController
      * Deletar um pedido.
      * 
      * @authenticated
+     * @permission patron
      * @group 5. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 

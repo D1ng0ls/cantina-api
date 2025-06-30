@@ -406,3 +406,68 @@ endpoints:
     method: null
     route: null
     custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/cantina/orders/user
+    metadata:
+      groupName: '5. Pedidos'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mostrar pedidos por usuário.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {token} O token de autenticação JWT'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "data": [
+              {
+                "id": 1,
+                "valor_total": 100,
+                "status": "aberto",
+                "usuario": {
+                  "id": 1,
+                  "name": "John Doe"
+                },
+                "pagamento": [
+                  {
+                    "id": 1,
+                    "status": "aprovado"
+                  }
+                ],
+                "produtos": [
+                  {
+                    "id": 1,
+                    "nome": "Produto X",
+                    "quantidade": 1,
+                    "valor_unitario": 100
+                  },
+                  ...
+                ]
+              }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

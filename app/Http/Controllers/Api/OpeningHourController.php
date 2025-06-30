@@ -57,6 +57,7 @@ class OpeningHourController extends ApiController
         }
 
         $openingHour = OpeningHour::where('day', $day)->get();
+        
         return response()->json($openingHour);
     }
 
@@ -64,6 +65,7 @@ class OpeningHourController extends ApiController
      * Cadastrar novo horário de funcionamento.
      * 
      * @authenticated
+     * @permission patron
      * @group 6. Horários
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
@@ -100,6 +102,7 @@ class OpeningHourController extends ApiController
      * Atualizar horário de funcionamento.
      * 
      * @authenticated
+     * @permission patron
      * @group 6. Horários
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
@@ -138,6 +141,7 @@ class OpeningHourController extends ApiController
      * Excluir horário de funcionamento.
      * 
      * @authenticated
+     * @permission patron
      * @group 6. Horários
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 

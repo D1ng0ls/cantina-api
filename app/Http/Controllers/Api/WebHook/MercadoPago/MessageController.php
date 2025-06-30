@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Log;
 
 class MessageController extends Controller
 {
+    /*
+     * @hideFromApiDocs
+     */
     public function handle(Request $request)
     {
         Log::info('Webhook MP recebido!', $request->all());
@@ -66,27 +69,27 @@ class MessageController extends Controller
     }
 
 
-    public function changeStatus(Request $request)
-    {
-        $request->validate([
-            'id' => 'required',
-            'status' => 'required',
-        ]);
+    // public function changeStatus(Request $request)
+    // {
+    //     $request->validate([
+    //         'id' => 'required',
+    //         'status' => 'required',
+    //     ]);
 
-        $pedido = Order::find($request->id);
+    //     $pedido = Order::find($request->id);
 
-        if (!$pedido) {
-            return response()->json([
-                'error' => 'Pedido não encontrado.',
-            ], 404);
-        }
+    //     if (!$pedido) {
+    //         return response()->json([
+    //             'error' => 'Pedido não encontrado.',
+    //         ], 404);
+    //     }
 
-        $pedido->update([
-            'status' => $request->status,
-        ]);
+    //     $pedido->update([
+    //         'status' => $request->status,
+    //     ]);
 
-        return response()->json([
-            'success' => 'Status do pedido atualizado com sucesso',
-        ]);
-    }
+    //     return response()->json([
+    //         'success' => 'Status do pedido atualizado com sucesso',
+    //     ]);
+    // }
 }
