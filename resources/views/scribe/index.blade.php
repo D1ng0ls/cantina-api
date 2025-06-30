@@ -77,6 +77,12 @@
                                                                                 <li class="tocify-item level-2" data-unique="1-autenticacao-POSTapi-cantina-login">
                                 <a href="#1-autenticacao-POSTapi-cantina-login">Login do usuário.</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="1-autenticacao-POSTapi-cantina-forgot-password">
+                                <a href="#1-autenticacao-POSTapi-cantina-forgot-password">Envia um código de redefinição de senha para o e-mail do usuário.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="1-autenticacao-POSTapi-cantina-reset-password">
+                                <a href="#1-autenticacao-POSTapi-cantina-reset-password">Reseta a senha do usuário usando o código de verificação.</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="1-autenticacao-POSTapi-cantina-logout">
                                 <a href="#1-autenticacao-POSTapi-cantina-logout">Logout do usuário autenticado.</a>
                             </li>
@@ -207,7 +213,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 29, 2025</li>
+        <li>Last updated: June 30, 2025</li>
     </ul>
 </div>
 
@@ -601,6 +607,330 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>Senha do usuário. Example: <code>|]|{+-</code></p>
+        </div>
+        </form>
+
+                    <h2 id="1-autenticacao-POSTapi-cantina-forgot-password">Envia um código de redefinição de senha para o e-mail do usuário.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-cantina-forgot-password">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://cantinaapi.dingols.com.br/api/cantina/forgot-password" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"gbailey@example.net\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cantinaapi.dingols.com.br/api/cantina/forgot-password"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "gbailey@example.net"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-cantina-forgot-password">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Se existir uma conta com este e-mail, um c&oacute;digo de redefini&ccedil;&atilde;o foi enviado.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-cantina-forgot-password" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-cantina-forgot-password"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-cantina-forgot-password"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-cantina-forgot-password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-cantina-forgot-password">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-cantina-forgot-password" data-method="POST"
+      data-path="api/cantina/forgot-password"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-cantina-forgot-password', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-cantina-forgot-password"
+                    onclick="tryItOut('POSTapi-cantina-forgot-password');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-cantina-forgot-password"
+                    onclick="cancelTryOut('POSTapi-cantina-forgot-password');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-cantina-forgot-password"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/cantina/forgot-password</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-cantina-forgot-password"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-cantina-forgot-password"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-cantina-forgot-password"
+               value="gbailey@example.net"
+               data-component="body">
+    <br>
+<p>Email do usuário para enviar o código. Example: <code>gbailey@example.net</code></p>
+        </div>
+        </form>
+
+                    <h2 id="1-autenticacao-POSTapi-cantina-reset-password">Reseta a senha do usuário usando o código de verificação.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-cantina-reset-password">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://cantinaapi.dingols.com.br/api/cantina/reset-password" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"gbailey@example.net\",
+    \"token\": \"architecto\",
+    \"password\": \"|]|{+-\",
+    \"password_confirmation\": \"architecto\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cantinaapi.dingols.com.br/api/cantina/reset-password"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "gbailey@example.net",
+    "token": "architecto",
+    "password": "|]|{+-",
+    "password_confirmation": "architecto"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-cantina-reset-password">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Senha redefinida com sucesso!&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (400):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;C&oacute;digo de redefini&ccedil;&atilde;o inv&aacute;lido ou expirado.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-cantina-reset-password" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-cantina-reset-password"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-cantina-reset-password"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-cantina-reset-password" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-cantina-reset-password">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-cantina-reset-password" data-method="POST"
+      data-path="api/cantina/reset-password"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-cantina-reset-password', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-cantina-reset-password"
+                    onclick="tryItOut('POSTapi-cantina-reset-password');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-cantina-reset-password"
+                    onclick="cancelTryOut('POSTapi-cantina-reset-password');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-cantina-reset-password"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/cantina/reset-password</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-cantina-reset-password"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-cantina-reset-password"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-cantina-reset-password"
+               value="gbailey@example.net"
+               data-component="body">
+    <br>
+<p>Email do usuário. Example: <code>gbailey@example.net</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="POSTapi-cantina-reset-password"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>O código de 6 dígitos recebido por e-mail. Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi-cantina-reset-password"
+               value="|]|{+-"
+               data-component="body">
+    <br>
+<p>A nova senha. Mínimo 8 caracteres. Example: <code>|]|{+-</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password_confirmation"                data-endpoint="POSTapi-cantina-reset-password"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Confirmação da nova senha. Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -2169,7 +2499,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "price=4326.41688"\
     --form "quantity=16"\
     --form "category_id=16"\
-    --form "image=@C:\Users\daffa\AppData\Local\Temp\php251D.tmp" </code></pre></div>
+    --form "image=@C:\Users\daffa\AppData\Local\Temp\php2F00.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2322,7 +2652,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>nullable Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\php251D.tmp</code></p>
+<p>nullable Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\php2F00.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
