@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendPasswordResetCode;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -30,7 +34,7 @@ class AuthController extends Controller
      *   "message": "Usuário já está logado"
      * }
      */
-    public function store(Request $request)
+    public function register(Request $request)
     {
         if (Auth::check()) {
             return response()->json([
@@ -127,5 +131,91 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Logout realizado com sucesso!',
         ]);
+    }
+
+    /**
+     * Envia um código de redefinição de senha para o e-mail do usuário.
+     *
+     * @group 1. Autenticação
+     *
+     * @bodyParam email string required Email do usuário para enviar o código.
+     *
+     * @response 200 {
+     * "message": "Se existir uma conta com este e-mail, um código de redefinição foi enviado."
+     * }
+     */
+    public function forgotPassword(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $user = User::where('email', $request->email)->first();
+
+        // Resposta genérica por segurança, não informa se o e-mail existe ou não
+        if (!$user) {
+            return response()->json(['message' => 'Se existir uma conta com este e-mail, um código de redefinição foi enviado.']);
+        }
+
+        // Gera um código de 6 dígitos
+        $code = rand(100000, 999999);
+
+        // Salva o código no banco de dados (tabela password_reset_tokens)
+        DB::table('password_reset_tokens')->updateOrInsert(
+            ['email' => $request->email],
+            [
+                'token' => Hash::make($code), // Salva o HASH do código, nunca o código puro!
+                'created_at' => Carbon::now()
+            ]
+        );
+
+        // Envia o e-mail com o código (usando uma classe Mailable)
+        Mail::to($request->email)->send(new SendPasswordResetCode($code));
+
+        return response()->json([
+            'message' => 'Se existir uma conta com este e-mail, um código de redefinição foi enviado.'
+        ]);
+    }
+
+    /**
+     * Reseta a senha do usuário usando o código de verificação.
+     *
+     * @group 1. Autenticação
+     *
+     * @bodyParam email string required Email do usuário.
+     * @bodyParam token string required O código de 6 dígitos recebido por e-mail.
+     * @bodyParam password string required A nova senha. Mínimo 8 caracteres.
+     * @bodyParam password_confirmation string required Confirmação da nova senha.
+     *
+     * @response 200 {
+     * "message": "Senha redefinida com sucesso!"
+     * }
+     * @response 400 {
+     * "error": "Código de redefinição inválido ou expirado."
+     * }
+     */
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'token' => 'required|string',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $resetRecord = DB::table('password_reset_tokens')
+            ->where('email', $request->email)
+            ->first();
+
+        if (!$resetRecord || Carbon::parse($resetRecord->created_at)->addMinutes(10)->isPast() || !Hash::check($request->token, $resetRecord->token)) {
+            return response()->json(['error' => 'Código de redefinição inválido ou expirado.'], 400);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
+    
+        DB::table('password_reset_tokens')->where('email', $request->email)->delete();
+
+        return response()->json(['message' => 'Senha redefinida com sucesso!']);
     }
 }

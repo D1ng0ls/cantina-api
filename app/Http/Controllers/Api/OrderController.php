@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Services\MercadoPagoService;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\User;
-use App\Services\MercadoPagoService;
-use Illuminate\Support\Facades\DB;
 
 class OrderController extends ApiController
 {
@@ -263,20 +262,25 @@ class OrderController extends ApiController
      *   "success": "Status do pedido atualizado com sucesso"
      * }
      */
-    public function update(Request $request, Order $pedido)
+    public function update(Request $request, Order $order)
     {
         $this->authorize('patron');
 
-        $request->validate([
-            'status' => 'required|in:open,awaiting_payment,approved,in_preparation,ready,canceled',
-        ], [
-            'status.required' => 'O status do pedido é obrigatório.',
-            'status.in' => 'O status do pedido deve ser um dos seguintes: open, awaiting_payment, approved, in_preparation, ready, canceled',
-        ]);
+        DB::beginTransaction();
+        try {
+            $order->update([
+                'status' => $request->status,
+            ]);
 
-        $pedido->update([
-            'status' => $request->status,
-        ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'error' => 'Ocorreu um erro ao atualizar o status do pedido. Tente novamente mais tarde.',
+                'details' => $e->getMessage()
+            ], 500);
+        }
 
         return response()->json([
             'success' => 'Status do pedido atualizado com sucesso',

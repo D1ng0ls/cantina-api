@@ -13,8 +13,10 @@ Route::post('/mp/webhook', [MessageController::class, 'handle'])->name('mp.webho
 
 Route::prefix('cantina')->group(function () {
     Route::middleware('guest')->group(function () {
-        Route::post('/register', [AuthController::class, 'store'])->name('register');
+        Route::post('/register', [AuthController::class, 'register'])->name('register');
         Route::post('/login', [AuthController::class, 'login'])->name('login');
+        Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
+        Route::post('/reset-password', [AuthController::class, 'resetPassword']);
     });
 
     Route::middleware('auth:sanctum')->group(function () {
