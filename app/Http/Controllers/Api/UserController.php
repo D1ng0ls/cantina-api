@@ -75,6 +75,7 @@ class UserController extends ApiController
      * 
      * @bodyParam old_password string required Senha antiga.
      * @bodyParam password string required Nova senha.
+     * @bodyParam password_confirmation string required Confirmação da nova senha.
      * 
      * @response 200 {
      *   "success": "Senha alterada com sucesso"

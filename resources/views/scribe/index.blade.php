@@ -213,7 +213,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 30, 2025</li>
+        <li>Last updated: July 1, 2025</li>
     </ul>
 </div>
 
@@ -1387,7 +1387,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"old_password\": \"architecto\",
-    \"password\": \"|]|{+-\"
+    \"password\": \"|]|{+-\",
+    \"password_confirmation\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -1405,7 +1406,8 @@ const headers = {
 
 let body = {
     "old_password": "architecto",
-    "password": "|]|{+-"
+    "password": "|]|{+-",
+    "password_confirmation": "architecto"
 };
 
 fetch(url, {
@@ -1529,6 +1531,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>Nova senha. Example: <code>|]|{+-</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password_confirmation"                data-endpoint="POSTapi-cantina-profile-change-password"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Confirmação da nova senha. Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -2499,7 +2512,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "price=4326.41688"\
     --form "quantity=16"\
     --form "category_id=16"\
-    --form "image=@C:\Users\daffa\AppData\Local\Temp\php2AA1.tmp" </code></pre></div>
+    --form "image=@C:\Users\daffa\AppData\Local\Temp\php2EA0.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2652,7 +2665,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>nullable Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\php2AA1.tmp</code></p>
+<p>nullable Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\php2EA0.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;

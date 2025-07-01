@@ -149,9 +149,20 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 'Confirmação da nova senha.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
     cleanBodyParameters:
       old_password: architecto
       password: '|]|{+-'
+      password_confirmation: architecto
     fileParameters: []
     responses:
       -
