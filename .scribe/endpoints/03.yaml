@@ -30,18 +30,10 @@ endpoints:
         status: 200
         content: |-
           {
-            "categories": [
+            "data": [
               {
                 "id": 3,
-                "name": "Categoria Y",
-                "products": [
-                  {
-                    "id": 1,
-                    "name": "Produto X",
-                    ...
-                  },
-                  ...
-                ]
+                "name": "Categoria Y"
               },
               ...
             ]

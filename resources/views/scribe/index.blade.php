@@ -157,50 +157,60 @@
                             </li>
                                                                         </ul>
                             </ul>
-                    <ul id="tocify-header-5-pedidos" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="5-pedidos">
-                    <a href="#5-pedidos">5. Pedidos</a>
+                    <ul id="tocify-header-5-menu" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="5-menu">
+                    <a href="#5-menu">5. Menu</a>
                 </li>
-                                    <ul id="tocify-subheader-5-pedidos" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="5-pedidos-GETapi-cantina-orders">
-                                <a href="#5-pedidos-GETapi-cantina-orders">Listar pedidos (paginação de 10 em 10).</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="5-pedidos-POSTapi-cantina-orders">
-                                <a href="#5-pedidos-POSTapi-cantina-orders">Criar um novo pedido com produtos.</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="5-pedidos-GETapi-cantina-orders--id-">
-                                <a href="#5-pedidos-GETapi-cantina-orders--id-">Mostrar pedido pelo ID.</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="5-pedidos-PUTapi-cantina-orders--id-">
-                                <a href="#5-pedidos-PUTapi-cantina-orders--id-">Atualizar o status de um pedido.</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="5-pedidos-DELETEapi-cantina-orders--id-">
-                                <a href="#5-pedidos-DELETEapi-cantina-orders--id-">Deletar um pedido.</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="5-pedidos-GETapi-cantina-orders-user">
-                                <a href="#5-pedidos-GETapi-cantina-orders-user">Mostrar pedidos por usuário.</a>
+                                    <ul id="tocify-subheader-5-menu" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="5-menu-GETapi-cantina-menu">
+                                <a href="#5-menu-GETapi-cantina-menu">Listar categorias com seus produtos.</a>
                             </li>
                                                                         </ul>
                             </ul>
-                    <ul id="tocify-header-6-horarios" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="6-horarios">
-                    <a href="#6-horarios">6. Horários</a>
+                    <ul id="tocify-header-6-pedidos" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="6-pedidos">
+                    <a href="#6-pedidos">6. Pedidos</a>
                 </li>
-                                    <ul id="tocify-subheader-6-horarios" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="6-horarios-GETapi-cantina-opening-hours">
-                                <a href="#6-horarios-GETapi-cantina-opening-hours">Listar horarios de funcionamento.</a>
+                                    <ul id="tocify-subheader-6-pedidos" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="6-pedidos-GETapi-cantina-orders">
+                                <a href="#6-pedidos-GETapi-cantina-orders">Listar pedidos (paginação de 10 em 10).</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="6-horarios-POSTapi-cantina-opening-hours">
-                                <a href="#6-horarios-POSTapi-cantina-opening-hours">Cadastrar novo horário de funcionamento.</a>
+                                                                                <li class="tocify-item level-2" data-unique="6-pedidos-POSTapi-cantina-orders">
+                                <a href="#6-pedidos-POSTapi-cantina-orders">Criar um novo pedido com produtos.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="6-horarios-PUTapi-cantina-opening-hours--openingHour_id-">
-                                <a href="#6-horarios-PUTapi-cantina-opening-hours--openingHour_id-">Atualizar horário de funcionamento.</a>
+                                                                                <li class="tocify-item level-2" data-unique="6-pedidos-GETapi-cantina-orders--id-">
+                                <a href="#6-pedidos-GETapi-cantina-orders--id-">Mostrar pedido pelo ID.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="6-horarios-DELETEapi-cantina-opening-hours--openingHour_id-">
-                                <a href="#6-horarios-DELETEapi-cantina-opening-hours--openingHour_id-">Excluir horário de funcionamento.</a>
+                                                                                <li class="tocify-item level-2" data-unique="6-pedidos-PUTapi-cantina-orders--id-">
+                                <a href="#6-pedidos-PUTapi-cantina-orders--id-">Atualizar o status de um pedido.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="6-horarios-GETapi-cantina-opening-hours-by-weekday--day-">
-                                <a href="#6-horarios-GETapi-cantina-opening-hours-by-weekday--day-">Mostrar horário de funcionamento pelo dia da semana.</a>
+                                                                                <li class="tocify-item level-2" data-unique="6-pedidos-DELETEapi-cantina-orders--id-">
+                                <a href="#6-pedidos-DELETEapi-cantina-orders--id-">Deletar um pedido.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="6-pedidos-GETapi-cantina-orders-user">
+                                <a href="#6-pedidos-GETapi-cantina-orders-user">Mostrar pedidos por usuário.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-7-horarios" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="7-horarios">
+                    <a href="#7-horarios">7. Horários</a>
+                </li>
+                                    <ul id="tocify-subheader-7-horarios" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="7-horarios-GETapi-cantina-opening-hours">
+                                <a href="#7-horarios-GETapi-cantina-opening-hours">Listar horarios de funcionamento.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="7-horarios-POSTapi-cantina-opening-hours">
+                                <a href="#7-horarios-POSTapi-cantina-opening-hours">Cadastrar novo horário de funcionamento.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="7-horarios-PUTapi-cantina-opening-hours--openingHour_id-">
+                                <a href="#7-horarios-PUTapi-cantina-opening-hours--openingHour_id-">Atualizar horário de funcionamento.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="7-horarios-DELETEapi-cantina-opening-hours--openingHour_id-">
+                                <a href="#7-horarios-DELETEapi-cantina-opening-hours--openingHour_id-">Excluir horário de funcionamento.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="7-horarios-GETapi-cantina-opening-hours-by-weekday--day-">
+                                <a href="#7-horarios-GETapi-cantina-opening-hours-by-weekday--day-">Mostrar horário de funcionamento pelo dia da semana.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -1594,18 +1604,10 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-  &quot;categories&quot;: [
+  &quot;data&quot;: [
     {
       &quot;id&quot;: 3,
-      &quot;name&quot;: &quot;Categoria Y&quot;,
-      &quot;products&quot;: [
-        {
-          &quot;id&quot;: 1,
-          &quot;name&quot;: &quot;Produto X&quot;,
-          ...
-        },
-        ...
-      ]
+      &quot;name&quot;: &quot;Categoria Y&quot;
     },
     ...
   ]
@@ -2512,7 +2514,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --form "price=4326.41688"\
     --form "quantity=16"\
     --form "category_id=16"\
-    --form "image=@C:\Users\daffa\AppData\Local\Temp\php2EA0.tmp" </code></pre></div>
+    --form "image=@C:\Users\daffa\AppData\Local\Temp\phpC69B.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2665,7 +2667,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>nullable Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\php2EA0.tmp</code></p>
+<p>nullable Imagem do produto. Example: <code>C:\Users\daffa\AppData\Local\Temp\phpC69B.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>price</code></b>&nbsp;&nbsp;
@@ -3710,11 +3712,160 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                <h1 id="5-pedidos">5. Pedidos</h1>
+                <h1 id="5-menu">5. Menu</h1>
 
     
 
-                                <h2 id="5-pedidos-GETapi-cantina-orders">Listar pedidos (paginação de 10 em 10).</h2>
+                                <h2 id="5-menu-GETapi-cantina-menu">Listar categorias com seus produtos.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-cantina-menu">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://cantinaapi.dingols.com.br/api/cantina/menu" \
+    --header "Authorization: Bearer {token} O token de autenticação JWT" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://cantinaapi.dingols.com.br/api/cantina/menu"
+);
+
+const headers = {
+    "Authorization": "Bearer {token} O token de autenticação JWT",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-cantina-menu">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+  &quot;categories&quot;: [
+    {
+      &quot;id&quot;: 3,
+      &quot;name&quot;: &quot;Categoria Y&quot;,
+      &quot;products&quot;: [
+        {
+          &quot;id&quot;: 1,
+          &quot;name&quot;: &quot;Produto X&quot;,
+          ...
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-cantina-menu" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cantina-menu"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cantina-menu"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-cantina-menu" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cantina-menu">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-cantina-menu" data-method="GET"
+      data-path="api/cantina/menu"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cantina-menu', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cantina-menu"
+                    onclick="tryItOut('GETapi-cantina-menu');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cantina-menu"
+                    onclick="cancelTryOut('GETapi-cantina-menu');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cantina-menu"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cantina/menu</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-cantina-menu"
+               value="Bearer {token} O token de autenticação JWT"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {token} O token de autenticação JWT</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-cantina-menu"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-cantina-menu"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                <h1 id="6-pedidos">6. Pedidos</h1>
+
+    
+
+                                <h2 id="6-pedidos-GETapi-cantina-orders">Listar pedidos (paginação de 10 em 10).</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -3873,7 +4024,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="5-pedidos-POSTapi-cantina-orders">Criar um novo pedido com produtos.</h2>
+                    <h2 id="6-pedidos-POSTapi-cantina-orders">Criar um novo pedido com produtos.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4106,7 +4257,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="5-pedidos-GETapi-cantina-orders--id-">Mostrar pedido pelo ID.</h2>
+                    <h2 id="6-pedidos-GETapi-cantina-orders--id-">Mostrar pedido pelo ID.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4281,7 +4432,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="5-pedidos-PUTapi-cantina-orders--id-">Atualizar o status de um pedido.</h2>
+                    <h2 id="6-pedidos-PUTapi-cantina-orders--id-">Atualizar o status de um pedido.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4460,7 +4611,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="5-pedidos-DELETEapi-cantina-orders--id-">Deletar um pedido.</h2>
+                    <h2 id="6-pedidos-DELETEapi-cantina-orders--id-">Deletar um pedido.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4614,7 +4765,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="5-pedidos-GETapi-cantina-orders-user">Mostrar pedidos por usuário.</h2>
+                    <h2 id="6-pedidos-GETapi-cantina-orders-user">Mostrar pedidos por usuário.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4770,11 +4921,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                <h1 id="6-horarios">6. Horários</h1>
+                <h1 id="7-horarios">7. Horários</h1>
 
     
 
-                                <h2 id="6-horarios-GETapi-cantina-opening-hours">Listar horarios de funcionamento.</h2>
+                                <h2 id="7-horarios-GETapi-cantina-opening-hours">Listar horarios de funcionamento.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4912,7 +5063,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="6-horarios-POSTapi-cantina-opening-hours">Cadastrar novo horário de funcionamento.</h2>
+                    <h2 id="7-horarios-POSTapi-cantina-opening-hours">Cadastrar novo horário de funcionamento.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -5090,7 +5241,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="6-horarios-PUTapi-cantina-opening-hours--openingHour_id-">Atualizar horário de funcionamento.</h2>
+                    <h2 id="7-horarios-PUTapi-cantina-opening-hours--openingHour_id-">Atualizar horário de funcionamento.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -5295,7 +5446,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="6-horarios-DELETEapi-cantina-opening-hours--openingHour_id-">Excluir horário de funcionamento.</h2>
+                    <h2 id="7-horarios-DELETEapi-cantina-opening-hours--openingHour_id-">Excluir horário de funcionamento.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -5449,7 +5600,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="6-horarios-GETapi-cantina-opening-hours-by-weekday--day-">Mostrar horário de funcionamento pelo dia da semana.</h2>
+                    <h2 id="7-horarios-GETapi-cantina-opening-hours-by-weekday--day-">Mostrar horário de funcionamento pelo dia da semana.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>

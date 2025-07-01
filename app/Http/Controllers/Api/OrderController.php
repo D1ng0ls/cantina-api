@@ -16,7 +16,7 @@ class OrderController extends ApiController
      * 
      * @authenticated
      * @permission patron
-     * @group 5. Pedidos
+     * @group 6. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @response 200 {
@@ -62,7 +62,7 @@ class OrderController extends ApiController
      * Mostrar pedido pelo ID.
      * 
      * @authenticated
-     * @group 5. Pedidos
+     * @group 6. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @urlParam order int required ID do pedido.
@@ -101,7 +101,7 @@ class OrderController extends ApiController
      * Mostrar pedidos por usuário.
      * 
      * @authenticated
-     * @group 5. Pedidos
+     * @group 6. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @response 200 {
@@ -142,7 +142,7 @@ class OrderController extends ApiController
      * Criar um novo pedido com produtos.
      * 
      * @authenticated
-     * @group 5. Pedidos
+     * @group 6. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @bodyParam produtos array required Lista de produtos.
@@ -252,7 +252,7 @@ class OrderController extends ApiController
      * 
      * @authenticated
      * @permission patron
-     * @group 5. Pedidos
+     * @group 6. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @urlParam pedido int required ID do pedido.
@@ -292,7 +292,7 @@ class OrderController extends ApiController
      * 
      * @authenticated
      * @permission patron
-     * @group 5. Pedidos
+     * @group 6. Pedidos
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @urlParam pedido int required ID do pedido.

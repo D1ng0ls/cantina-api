@@ -11,7 +11,7 @@ class OpeningHourController extends ApiController
      * Listar horarios de funcionamento.
      * 
      * @authenticated
-     * @group 6. Horários
+     * @group 7. Horários
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @response 200 {
@@ -34,7 +34,7 @@ class OpeningHourController extends ApiController
      * Mostrar horário de funcionamento pelo dia da semana.
      * 
      * @authenticated
-     * @group 6. Horários
+     * @group 7. Horários
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @urlParam day int required ID dia da semana (0 = Domingo, 1 = Segunda, ...).
@@ -66,7 +66,7 @@ class OpeningHourController extends ApiController
      * 
      * @authenticated
      * @permission patron
-     * @group 6. Horários
+     * @group 7. Horários
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @bodyParam day int required Dia da semana (0 = Domingo, 1 = Segunda, ...).
@@ -103,7 +103,7 @@ class OpeningHourController extends ApiController
      * 
      * @authenticated
      * @permission patron
-     * @group 6. Horários
+     * @group 7. Horários
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @urlParam opening_hour int required ID do horário.
@@ -142,7 +142,7 @@ class OpeningHourController extends ApiController
      * 
      * @authenticated
      * @permission patron
-     * @group 6. Horários
+     * @group 7. Horários
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @urlParam opening_hour int required ID do horário.

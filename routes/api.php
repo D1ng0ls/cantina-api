@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\OpeningHourController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\WebHook\MercadoPago\MessageController;
 
 Route::post('/mp/webhook', [MessageController::class, 'handle'])->name('mp.webhook');
@@ -34,6 +35,8 @@ Route::prefix('cantina')->group(function () {
         Route::post('/products/active/{product}', [ProductController::class, 'toggleActive'])->name('products.toggleActive');
 
         Route::apiResource('categories', CategoryController::class);
+
+        Route::apiResource('menu', MenuController::class);
 
         Route::apiResource('orders', OrderController::class);
         Route::get('/orders/user', [OrderController::class, 'showByUser'])->name('orders.showByUser');

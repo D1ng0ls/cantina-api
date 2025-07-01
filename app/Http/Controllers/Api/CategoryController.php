@@ -15,18 +15,10 @@ class CategoryController extends ApiController
      * @header Authorization Bearer {token} O token de autenticação JWT
      * 
      * @response 200 {
-     *   "categories": [
+     *   "data": [
      *     {
      *       "id": 3,
-     *       "name": "Categoria Y",
-     *       "products": [
-     *         {
-     *           "id": 1,
-     *           "name": "Produto X",
-     *           ...
-     *         },
-     *         ...
-     *       ]
+     *       "name": "Categoria Y"
      *     },
      *     ...
      *   ]
@@ -34,11 +26,7 @@ class CategoryController extends ApiController
      */
     public function index()
     {
-        return response()->json(
-            Category::with(['products' => function ($query) {
-                $query->orderBy('name');
-            }])->orderBy('name')->get()
-        );
+        return response()->json(Category::all());
     }
 
     /**
