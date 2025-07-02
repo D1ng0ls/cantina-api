@@ -301,11 +301,11 @@ class OrderController extends ApiController
      *   "success": "Pedido removido com sucesso"
      * }
      */
-    public function destroy(Order $pedido)
+    public function destroy(Order $order)
     {
         $this->authorize('patron');
 
-        $pedido->delete();
+        $order->delete();
 
         return response()->json([
             'success' => 'Pedido removido com sucesso',
