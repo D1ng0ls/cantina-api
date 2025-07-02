@@ -29,8 +29,8 @@ Route::prefix('cantina')->group(function () {
             Route::post('/change-password', [UserController::class, 'changePassword']);
         });
 
-        Route::apiResource('products', ProductController::class);
         Route::get('/products/inactives', [ProductController::class, 'indexInactive'])->name('products.indexInactive');
+        Route::apiResource('products', ProductController::class);
         Route::delete('/products/remove-image/{product}', [ProductController::class, 'removeImage'])->name('products.removeImage');
         Route::post('/products/active/{product}', [ProductController::class, 'toggleActive'])->name('products.toggleActive');
 
