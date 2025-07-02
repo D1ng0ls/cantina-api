@@ -135,7 +135,7 @@ class OrderController extends ApiController
      */
     public function showByUser(Request $request)
     {
-        return response()->json(auth()->user()->orders()->with(['products', 'payment']));
+        return response()->json(auth()->user()->load(['orders.products', 'orders.payment']));
     }
 
     /**
