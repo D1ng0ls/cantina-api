@@ -38,8 +38,8 @@ Route::prefix('cantina')->group(function () {
 
         Route::apiResource('menu', MenuController::class);
 
-        Route::apiResource('orders', OrderController::class);
         Route::get('/orders/user', [OrderController::class, 'showByUser'])->name('orders.showByUser');
+        Route::apiResource('orders', OrderController::class);
 
         Route::apiResource('opening-hours', OpeningHourController::class)->parameters([
             'opening-hours' => 'openingHour'
